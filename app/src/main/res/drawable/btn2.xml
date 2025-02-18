@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Outer shape with blue corners -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="10dp"/>  <!-- Rounded corners -->
+            <solid android:color="#2D4990"/>  <!-- Blue color -->
+        </shape>
+    </item>
+
+    <!-- Inner shape (smaller) with white background -->
+    <item android:left="1dp" android:top="1dp" android:right="1dp" android:bottom="1dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="10dp"/>  <!-- Slightly smaller radius -->
+            <solid android:color="#FFFFFF"/>  <!-- White background -->
+        </shape>
+    </item>
+
+</layer-list>
+
