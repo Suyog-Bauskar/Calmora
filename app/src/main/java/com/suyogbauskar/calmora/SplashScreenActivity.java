@@ -28,14 +28,9 @@ public class SplashScreenActivity extends AppCompatActivity {
         animationView = findViewById(R.id.lottie);
         animationView.playAnimation();
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                // Intent is used to switch from one activity to another.
-                Intent i = new Intent(SplashScreenActivity.this, StartActivity.class);
-                startActivity(i); // invoke the SecondActivity.
-                finish(); // the current activity will get finished.
-            }
-        }, 3000);
+        new Handler().postDelayed(() -> {
+            startActivity(new Intent(SplashScreenActivity.this, StartActivity.class));
+            finish();
+        }, 2000);
     }
 }

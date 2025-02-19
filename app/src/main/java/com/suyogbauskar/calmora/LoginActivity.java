@@ -10,8 +10,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
+import com.suyogbauskar.calmora.utils.ProgressDialog;
+
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -27,9 +30,12 @@ import androidx.core.view.WindowInsetsCompat;
 public class LoginActivity extends AppCompatActivity {
 
     private static final String TAG = "LoginActivity";
+    private EditText emailEditText, passwordEditText;
     private FirebaseAuth mAuth;
     private SignInClient oneTapClient;
     private ActivityResultLauncher<IntentSenderRequest> signInLauncher;
+
+    private final ProgressDialog progressDialog = new ProgressDialog();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +52,12 @@ public class LoginActivity extends AppCompatActivity {
         oneTapClient = Identity.getSignInClient(this);
 
         AppCompatButton googleSignInBtn = findViewById(R.id.googleSignInBtn);
+        emailEditText = findViewById(R.id.emailEditText);
+        passwordEditText = findViewById(R.id.passwordEditText);
+        AppCompatButton loginBtn = findViewById(R.id.loginActivityLoginBtn);
+
         googleSignInBtn.setOnClickListener(view -> handleGoogleSignIn());
+        loginBtn.setOnClickListener(view -> handleEmailAndPasswordSignIn());
 
         initializeSignInLauncher();
     }
@@ -101,5 +112,30 @@ public class LoginActivity extends AppCompatActivity {
                     Log.d(TAG, "No Google Accounts found: " + e.getLocalizedMessage());
                     Toast.makeText(this, "No Google Accounts found", Toast.LENGTH_SHORT).show();
                 });
+    }
+
+    private void handleEmailAndPasswordSignIn() {
+        String email = emailEditText.getText().toString().trim();
+        String password = passwordEditText.getText().toString().trim();
+
+        if (email.isEmpty()) {
+            Toast.makeText(this, "Enter email", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (password.isEmpty()) {
+            Toast.makeText(this, "Enter password", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        progressDialog.show(LoginActivity.this);
+
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+            progressDialog.hide();
+            if (task.isSuccessful()) {
+                Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
