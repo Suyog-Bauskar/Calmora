@@ -1,16 +1,194 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/main"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".PersonalInformationActivity">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/personalbg"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".PersonalInformationActivity">
 
-    <TextView
-            android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="235dp"
+        android:orientation="vertical">
+
+        <!-- Name Section -->
+        <LinearLayout
+            android:layout_width="280dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/rounded_background"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:text="Name"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_corners"
+                android:hint=""
+                android:padding="8dp"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <!-- Age Group Section -->
+        <LinearLayout
+            android:layout_width="280dp"
             android:layout_height="wrap_content"
-        android:text="Hello"
-        android:textSize="20sp" />
+            android:layout_gravity="center"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/rounded_background"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="8dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:text="Age Group"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RadioButton
+                        android:id="@+id/age_group_1"
+                        android:layout_width="180dp"
+                        android:layout_height="30dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/rounded_corners"
+                        android:padding="4dp"
+                        android:text="06 - 12"
+                        android:textColor="@color/black" />
+
+                    <RadioButton
+                        android:id="@+id/age_group_2"
+                        android:layout_width="180dp"
+                        android:layout_height="30dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/rounded_corners"
+                        android:padding="4dp"
+                        android:text="13 - 19"
+                        android:textColor="@color/black" />
+
+                    <RadioButton
+                        android:id="@+id/age_group_3"
+                        android:layout_width="180dp"
+                        android:layout_height="30dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/rounded_corners"
+                        android:padding="4dp"
+                        android:text="20 - 35"
+                        android:textColor="@color/black" />
+
+                    <RadioButton
+                        android:id="@+id/age_group_4"
+                        android:layout_width="180dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/rounded_corners"
+                        android:padding="4dp"
+                        android:text="36 +"
+                        android:textColor="@color/black" />
+                </RadioGroup>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Gender Section -->
+        <LinearLayout
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/rounded_background"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:text="Gender"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:orientation="horizontal">
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RadioButton
+                        android:id="@+id/gender_male"
+                        android:layout_width="180dp"
+                        android:layout_height="30dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/rounded_corners"
+                        android:padding="4dp"
+                        android:text="Male"
+                        android:textColor="@color/black" />
+
+                    <RadioButton
+                        android:id="@+id/gender_female"
+                        android:layout_width="180dp"
+                        android:layout_height="30dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/rounded_corners"
+                        android:padding="4dp"
+                        android:text="Female"
+                        android:textColor="@color/black" />
+
+                    <RadioButton
+                        android:id="@+id/gender_others"
+                        android:layout_width="180dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/rounded_corners"
+                        android:padding="4dp"
+                        android:text="Others"
+                        android:textColor="@color/black" />
+                </RadioGroup>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="190dp"
+            android:layout_height="55dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/loginshape"
+            android:text="SAVE"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+</LinearLayout>
