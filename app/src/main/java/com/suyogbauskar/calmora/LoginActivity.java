@@ -7,11 +7,11 @@ import com.google.android.gms.auth.api.identity.SignInCredential;
 import com.google.android.gms.common.api.ApiException;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 import com.suyogbauskar.calmora.utils.ProgressDialog;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
@@ -75,8 +75,7 @@ public class LoginActivity extends AppCompatActivity {
                                 mAuth.signInWithCredential(firebaseCredential)
                                         .addOnCompleteListener(this, task -> {
                                             if (task.isSuccessful()) {
-                                                FirebaseUser user = mAuth.getCurrentUser();
-                                                Toast.makeText(this, "Sign in successful: " + (user != null ? user.getEmail() : "Couldn't fetch email"), Toast.LENGTH_SHORT).show();
+                                                goToPersonalInformationScreen();
                                             } else {
                                                 Log.w(TAG, "signInWithCredential:failure", task.getException());
                                                 Toast.makeText(this, "Sign in failed", Toast.LENGTH_SHORT).show();
@@ -132,10 +131,14 @@ public class LoginActivity extends AppCompatActivity {
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
             progressDialog.hide();
             if (task.isSuccessful()) {
-                Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
+                goToPersonalInformationScreen();
             } else {
                 Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void goToPersonalInformationScreen() {
+        startActivity(new Intent(LoginActivity.this, PersonalInformationActivity.class));
     }
 }
