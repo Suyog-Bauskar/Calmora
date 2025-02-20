@@ -14,6 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="235dp"
+        android:paddingBottom="10dp"
         android:orientation="vertical">
 
         <!-- Name Section -->
@@ -186,6 +187,8 @@
             android:layout_height="55dp"
             android:layout_gravity="center"
             android:layout_marginTop="8dp"
+            android:clickable="true"
+            android:elevation="5dp"
             android:background="@drawable/loginshape"
             android:text="SAVE"
             android:textColor="@color/white" />
