@@ -15,6 +15,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -31,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private static final String TAG = "LoginActivity";
     private EditText emailEditText, passwordEditText;
+    private TextView signUpTextView;
     private FirebaseAuth mAuth;
     private SignInClient oneTapClient;
     private ActivityResultLauncher<IntentSenderRequest> signInLauncher;
@@ -55,6 +57,8 @@ public class LoginActivity extends AppCompatActivity {
         emailEditText = findViewById(R.id.emailEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
         AppCompatButton loginBtn = findViewById(R.id.loginActivityLoginBtn);
+        TextView signUpTextView = findViewById(R.id.signUpTextView);
+        signUpTextView.setOnClickListener(view -> startActivity(new Intent(LoginActivity.this, SignUpActivity.class)));
 
         googleSignInBtn.setOnClickListener(view -> handleGoogleSignIn());
         loginBtn.setOnClickListener(view -> handleEmailAndPasswordSignIn());

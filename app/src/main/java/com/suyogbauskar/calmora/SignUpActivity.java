@@ -4,11 +4,14 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import com.suyogbauskar.calmora.utils.ProgressDialog;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -16,6 +19,8 @@ import androidx.core.view.WindowInsetsCompat;
 public class SignUpActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
+    private EditText emailEditText, passwordEditText, confirmPasswordEditText;
+    private AppCompatButton signUpBtn;
 
     private final ProgressDialog progressDialog = new ProgressDialog();
 
@@ -31,14 +36,18 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
         mAuth = FirebaseAuth.getInstance();
+        emailEditText = findViewById(R.id.emailEditText);
+        passwordEditText = findViewById(R.id.passwordEditText);
+        confirmPasswordEditText = findViewById(R.id.confirmPasswordEditText);
+        signUpBtn = findViewById(R.id.signUpActivitySignUpBtn);
 
-        handleEmailAndPasswordSignUp();
+        signUpBtn.setOnClickListener(view -> handleEmailAndPasswordSignUp());
     }
 
     private void handleEmailAndPasswordSignUp() {
-        String email = "b@gmail.com";
-        String password = "111111";
-        String confirmPassword = "111111";
+        String email = emailEditText.getText().toString().trim();
+        String password = passwordEditText.getText().toString().trim();
+        String confirmPassword = confirmPasswordEditText.getText().toString().trim();
 
         if (email.isEmpty()) {
             Toast.makeText(this, "Enter email", Toast.LENGTH_SHORT).show();
@@ -63,6 +72,8 @@ public class SignUpActivity extends AppCompatActivity {
             progressDialog.hide();
             if (task.isSuccessful()) {
                 Toast.makeText(SignUpActivity.this, "Registration successful", Toast.LENGTH_SHORT).show();
+                finish();
+                startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
             } else {
                 Toast.makeText(SignUpActivity.this, "Registration failed", Toast.LENGTH_SHORT).show();
             }
