@@ -6,51 +6,52 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/firstbg"
-    android:orientation="vertical"
     android:gravity="center"
+    android:orientation="vertical"
     tools:context=".StartActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="220dp"
+        android:fontFamily="sans-serif-thin"
         android:text="@string/firsttxt"
         android:textAlignment="center"
-        android:textSize="24sp"
-        android:fontFamily="sans-serif-thin"
-        android:textStyle="bold"
         android:textColor="@color/black"
-        android:layout_marginTop="220dp"/>
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:fontFamily="sans-serif"
         android:text="your own safespace"
         android:textColor="@color/black"
-        android:textSize="15sp"
-        android:fontFamily="sans-serif"
-        android:layout_marginTop="15dp"/>
+        android:textSize="15sp" />
 
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/login"
         android:layout_width="300dp"
         android:layout_height="58dp"
-        android:background="@drawable/loginshape"
-        android:textColor="@color/white"
-        android:text="Log In"
-        android:textSize="20sp"
-        android:textFontWeight="50"
         android:layout_marginTop="40dp"
-        />
+        android:background="@drawable/loginshape"
+        android:fontFamily="@font/inter_18pt_bold"
+        android:text="Log In"
+        android:textColor="@color/white"
+        android:textFontWeight="50"
+        android:textSize="20sp" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/signup"
         android:layout_width="300dp"
         android:layout_height="58dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/btn2"
+        android:fontFamily="@font/inter_18pt_bold"
+        android:text="Sign Up"
         android:textColor="#2D4990"
         android:textFontWeight="50"
-        android:textSize="20sp"
-        android:layout_marginTop="20dp"
-        android:text="Sign Up" />
+        android:textSize="20sp" />
 </LinearLayout>
