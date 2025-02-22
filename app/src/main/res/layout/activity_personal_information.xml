@@ -1,125 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/main"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/personalbg"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="16dp"
-        tools:context=".PersonalInformationActivity">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/personalbg"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".PersonalInformationActivity">
 
     <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="235dp"
-            android:paddingBottom="10dp"
-            android:orientation="vertical">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="235dp"
+        android:orientation="vertical"
+        android:paddingBottom="10dp">
 
         <!-- Name Section -->
         <LinearLayout
-                android:layout_width="280dp"
-                android:layout_height="60dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/rounded_background"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:padding="8dp">
+            android:layout_width="280dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/rounded_background"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="8dp">
 
             <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="8dp"
-                    android:text="Name"
-                    android:textColor="#FFFFFF"
-                    android:textStyle="bold" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:text="Name"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
 
             <EditText
-                    android:id="@+id/nameEditText"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/rounded_corners"
-                    android:hint=""
-                    android:padding="8dp"
-                    android:singleLine="true"
-                    android:importantForAutofill="no"
-                    android:inputType="none|textNoSuggestions"
-                    android:textColor="@color/black" />
+                android:id="@+id/nameEditText"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_corners"
+                android:hint=""
+                android:importantForAutofill="no"
+                android:inputType="none|textNoSuggestions"
+                android:padding="8dp"
+                android:singleLine="true"
+                android:textColor="@color/black" />
         </LinearLayout>
 
         <!-- Age Group Section -->
         <LinearLayout
-                android:layout_width="280dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/rounded_background"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:padding="8dp">
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/rounded_background"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="8dp">
 
             <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="8dp"
-                    android:text="Age Group"
-                    android:textColor="#FFFFFF"
-                    android:textStyle="bold" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:text="Age Group"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
 
             <LinearLayout
-                    android:layout_width="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RadioGroup
+                    android:id="@+id/ageGroup"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                <RadioGroup
-                        android:id="@+id/ageGroup"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                    <RadioButton
+                        android:id="@+id/group1"
+                        android:layout_width="180dp"
+                        android:layout_height="30dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/rounded_corners"
+                        android:padding="4dp"
+                        android:text="06 - 12"
+                        android:textColor="@color/black" />
 
                     <RadioButton
-                            android:id="@+id/group1"
-                            android:layout_width="180dp"
-                            android:layout_height="30dp"
-                            android:layout_marginBottom="8dp"
-                            android:background="@drawable/rounded_corners"
-                            android:padding="4dp"
-                            android:text="06 - 12"
-                            android:textColor="@color/black" />
+                        android:id="@+id/group2"
+                        android:layout_width="180dp"
+                        android:layout_height="30dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/rounded_corners"
+                        android:padding="4dp"
+                        android:text="13 - 19"
+                        android:textColor="@color/black" />
 
                     <RadioButton
-                            android:id="@+id/group2"
-                            android:layout_width="180dp"
-                            android:layout_height="30dp"
-                            android:layout_marginBottom="8dp"
-                            android:background="@drawable/rounded_corners"
-                            android:padding="4dp"
-                            android:text="13 - 19"
-                            android:textColor="@color/black" />
+                        android:id="@+id/group3"
+                        android:layout_width="180dp"
+                        android:layout_height="30dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/rounded_corners"
+                        android:padding="4dp"
+                        android:text="20 - 35"
+                        android:textColor="@color/black" />
 
                     <RadioButton
-                            android:id="@+id/group3"
-                            android:layout_width="180dp"
-                            android:layout_height="30dp"
-                            android:layout_marginBottom="8dp"
-                            android:background="@drawable/rounded_corners"
-                            android:padding="4dp"
-                            android:text="20 - 35"
-                            android:textColor="@color/black" />
-
-                    <RadioButton
-                            android:id="@+id/group4"
-                            android:layout_width="180dp"
-                            android:layout_height="30dp"
-                            android:background="@drawable/rounded_corners"
-                            android:padding="4dp"
-                            android:text="36+"
-                            android:textColor="@color/black" />
+                        android:id="@+id/group4"
+                        android:layout_width="180dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/rounded_corners"
+                        android:padding="4dp"
+                        android:text="36+"
+                        android:textColor="@color/black" />
                 </RadioGroup>
             </LinearLayout>
 
@@ -127,78 +127,78 @@
 
         <!-- Gender Section -->
         <LinearLayout
-                android:layout_width="280dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@drawable/rounded_background"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:padding="8dp">
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/rounded_background"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="8dp">
 
             <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="8dp"
-                    android:text="Gender"
-                    android:textColor="#FFFFFF"
-                    android:textStyle="bold" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:text="Gender"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
 
             <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:orientation="horizontal">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:orientation="horizontal">
 
                 <RadioGroup
-                        android:id="@+id/genderGroup"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                    android:id="@+id/genderGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
                     <RadioButton
-                            android:id="@+id/male"
-                            android:layout_width="180dp"
-                            android:layout_height="30dp"
-                            android:layout_marginBottom="8dp"
-                            android:background="@drawable/rounded_corners"
-                            android:padding="4dp"
-                            android:text="Male"
-                            android:textColor="@color/black" />
+                        android:id="@+id/male"
+                        android:layout_width="180dp"
+                        android:layout_height="30dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/rounded_corners"
+                        android:padding="4dp"
+                        android:text="Male"
+                        android:textColor="@color/black" />
 
                     <RadioButton
-                            android:id="@+id/female"
-                            android:layout_width="180dp"
-                            android:layout_height="30dp"
-                            android:layout_marginBottom="8dp"
-                            android:background="@drawable/rounded_corners"
-                            android:padding="4dp"
-                            android:text="Female"
-                            android:textColor="@color/black" />
+                        android:id="@+id/female"
+                        android:layout_width="180dp"
+                        android:layout_height="30dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/rounded_corners"
+                        android:padding="4dp"
+                        android:text="Female"
+                        android:textColor="@color/black" />
 
                     <RadioButton
-                            android:id="@+id/others"
-                            android:layout_width="180dp"
-                            android:layout_height="30dp"
-                            android:background="@drawable/rounded_corners"
-                            android:padding="4dp"
-                            android:text="Others"
-                            android:textColor="@color/black" />
+                        android:id="@+id/others"
+                        android:layout_width="180dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/rounded_corners"
+                        android:padding="4dp"
+                        android:text="Others"
+                        android:textColor="@color/black" />
                 </RadioGroup>
             </LinearLayout>
 
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/saveBtn"
-                android:layout_width="190dp"
-                android:layout_height="55dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="8dp"
-                android:clickable="true"
-                android:elevation="5dp"
-                android:background="@drawable/loginshape"
-                android:text="SAVE"
-                android:textColor="@color/white" />
+            android:id="@+id/saveBtn"
+            android:layout_width="190dp"
+            android:layout_height="55dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/loginshape"
+            android:clickable="true"
+            android:elevation="5dp"
+            android:text="SAVE"
+            android:textColor="@color/white" />
     </LinearLayout>
 
 </LinearLayout>

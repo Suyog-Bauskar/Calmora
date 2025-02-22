@@ -1,133 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/main"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/loginpgbg"
-        android:orientation="vertical"
-        tools:context=".LoginActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/loginpgbg"
+    android:orientation="vertical"
+    tools:context=".LoginActivity">
 
     <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="120dp"
-            android:fontFamily="sans-serif-thin"
-            android:text="Welcome back!"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="120dp"
+        android:fontFamily="sans-serif-thin"
+        android:text="Welcome back!"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
     <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="50dp"
-            android:text="Login In to your account"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/inter_18pt_regular"
+        android:text="Login In to your account"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
 
     <EditText
-            android:layout_width="310dp"
-            android:layout_height="55dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="50dp"
-            android:background="@drawable/edittext_shape"
-            android:drawableLeft="@drawable/mail"
-            android:drawablePadding="10dp"
-            android:hint="Enter your email"
-            android:inputType="textEmailAddress"
-            android:paddingLeft="15dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"
-            android:id="@+id/emailEditText" />
+        android:id="@+id/emailEditText"
+        android:layout_width="310dp"
+        android:layout_height="55dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/edittext_shape"
+        android:drawableLeft="@drawable/mail"
+        android:drawablePadding="10dp"
+        android:fontFamily="sans-serif"
+        android:hint="Enter your email"
+        android:inputType="textEmailAddress"
+        android:paddingLeft="15dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black" />
 
     <EditText
-            android:layout_width="310dp"
-            android:layout_height="55dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/edittext_shape"
-            android:drawableLeft="@drawable/lock"
-            android:drawablePadding="10dp"
-            android:hint="Enter your password"
-            android:inputType="textPassword"
-            android:paddingLeft="15dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"
-            android:id="@+id/passwordEditText" />
+        android:id="@+id/passwordEditText"
+        android:layout_width="310dp"
+        android:layout_height="55dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/edittext_shape"
+        android:drawableLeft="@drawable/lock"
+        android:drawablePadding="10dp"
+        android:fontFamily="sans-serif"
+        android:hint="Enter your password"
+        android:inputType="textPassword"
+        android:paddingLeft="15dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black" />
 
     <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="25dp"
-            android:paddingRight="15dp"
-            android:text="Forgot password?"
-            android:textColor="#2D4990"
-            android:textSize="15sp" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="25dp"
+        android:fontFamily="@font/inter_18pt_regular"
+        android:paddingRight="15dp"
+        android:text="Forgot password?"
+        android:textColor="#2D4990"
+        android:textSize="15sp" />
 
     <androidx.appcompat.widget.AppCompatButton
-            android:layout_width="196dp"
-            android:layout_height="55dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/loginshape"
-            android:text="Log In"
-            android:textColor="@color/white"
-            android:textFontWeight="50"
-            android:textSize="20sp"
-            android:id="@+id/loginActivityLoginBtn" />
+        android:id="@+id/loginActivityLoginBtn"
+        android:layout_width="196dp"
+        android:layout_height="55dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/loginshape"
+        android:fontFamily="@font/inter_18pt_bold"
+        android:text="Log In"
+        android:textColor="@color/white"
+        android:textFontWeight="50"
+        android:textSize="20sp" />
 
     <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:paddingRight="15dp"
-            android:text="OR"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/inter_18pt_regular"
+        android:paddingRight="15dp"
+        android:text="OR"
+        android:textColor="@color/black"
+        android:textSize="15sp" />
 
     <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/googleSignInBtn"
-            android:layout_width="300dp"
-            android:layout_height="55dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/edittext_shape"
-            android:drawableLeft="@drawable/google"
-            android:fontFamily="sans-serif"
-            android:paddingLeft="15dp"
-            android:text="Log In with your Google account"
-            android:textAllCaps="false"
-            android:textColor="@color/black"
-            android:textSize="15sp"
-            android:textStyle="normal" />
+        android:id="@+id/googleSignInBtn"
+        android:layout_width="300dp"
+        android:layout_height="55dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/edittext_shape"
+        android:drawableLeft="@drawable/google"
+        android:fontFamily="@font/inter_18pt_regular"
+        android:paddingLeft="15dp"
+        android:text="Log In with your Google account"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:textStyle="normal" />
 
     <LinearLayout
-            android:layout_width="match_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:gravity="center">
+            android:fontFamily="@font/inter_18pt_regular"
+            android:text="Dont have account? "
+            android:textColor="@color/black"
+            android:textSize="15sp" />
 
         <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Dont have account? "
-                android:textColor="@color/black"
-                android:textSize="15sp" />
-
-        <TextView
-                android:id="@+id/signUpTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sign Up"
-                android:textColor="#2D4990"
-                android:textSize="15sp" />
+            android:id="@+id/signUpTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_18pt_regular"
+            android:text="Sign Up"
+            android:textColor="#2D4990"
+            android:textSize="15sp" />
 
     </LinearLayout>
 

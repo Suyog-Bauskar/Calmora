@@ -9,8 +9,6 @@
     tools:context=".SplashScreenActivity">
 
 
-
-
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottie"
         android:layout_width="400dp"
@@ -34,7 +32,7 @@
         android:text="Welcome To \n CALMORA"
         android:textAlignment="center"
         android:textColor="#FFECCC"
-        android:textSize="30sp"
+        android:textSize="35dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,7 +48,6 @@
         android:textColor="#EBEAEC"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/textView"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
