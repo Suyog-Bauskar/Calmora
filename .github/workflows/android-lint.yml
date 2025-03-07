@@ -9,6 +9,7 @@ on:
       - '**.gradle'
       - gradle.properties
       - gradlew*
+      - README.md
 
 jobs:
   android-lint:
