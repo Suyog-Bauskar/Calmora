@@ -976,6 +976,16 @@
 
             </RadioGroup>
 
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="Next"
+                android:elevation="5dp"
+                android:background="@drawable/rounded_corners"
+
+                />
+
         </LinearLayout>
 
 
