@@ -1,4 +1,4 @@
-name: Deploy to Google Play
+name: Build & Upload AAB to Play Store
 
 on:
   push:
@@ -6,28 +6,40 @@ on:
       - main
 
 jobs:
-  deploy:
+  build:
+    name: Build & Deploy AAB
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
       - name: Write google-services.json
         env:
           DATA: ${{ secrets.GOOGLE_SERVICES_JSON }}
-        run: echo "$DATA" | base64 --decode > app/google-services.json
-        
-      - name: Set up JDK
+        run: echo "$DATA" | base64 --decode > app/google-services.json        
+
+      - name: Decode and Restore Keystore
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+        run: |
+          echo $KEYSTORE_BASE64 | base64 -d > release.keystore
+
+      - name: Set Up JDK
         uses: actions/setup-java@v4
         with:
           distribution: zulu
           java-version: 21
           cache: gradle
 
-      - name: Build Release Bundle
+      - name: Build Release AAB
+        env:
+          KEYSTORE_PATH: ${{ github.workspace }}/release.keystore
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
         run: ./gradlew bundleRelease
 
-      - name: Upload to Google Play
+      - name: Upload AAB to Google Play
         uses: r0adkll/upload-google-play@v1
         with:
           serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON }}

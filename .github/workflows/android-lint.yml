@@ -13,7 +13,6 @@ jobs:
         with:
           fetch-depth: 1
 
-      # Create google-services.json from GitHub secrets
       - name: Write google-services.json
         env:
           DATA: ${{ secrets.GOOGLE_SERVICES_JSON }}
