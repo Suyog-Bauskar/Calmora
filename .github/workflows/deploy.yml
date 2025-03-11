@@ -12,6 +12,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Write google-services.json
+        env:
+          DATA: ${{ secrets.GOOGLE_SERVICES_JSON }}
+        run: echo "$DATA" | base64 --decode > app/google-services.json
+        
       - name: Set up JDK
         uses: actions/setup-java@v4
         with:
