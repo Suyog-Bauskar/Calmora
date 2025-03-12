@@ -46,3 +46,4 @@ jobs:
           packageName: com.suyogbauskar.calmora
           releaseFiles: app/build/outputs/bundle/release/app-release.aab
           track: beta
+          whatsNewDirectory: release-notes
