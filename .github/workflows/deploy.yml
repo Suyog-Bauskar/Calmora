@@ -16,7 +16,7 @@ jobs:
       - name: Write google-services.json
         env:
           DATA: ${{ secrets.GOOGLE_SERVICES_JSON }}
-        run: echo "$DATA" | base64 --decode > app/google-services.json        
+        run: echo "$DATA" | base64 --decode > app/google-services.json
 
       - name: Decode and Restore Keystore
         env:
@@ -30,6 +30,18 @@ jobs:
           distribution: zulu
           java-version: 21
           cache: gradle
+
+      - name: Calculate adjusted version number
+        id: adjust_run_number
+        run: echo "adjusted_run_number=$((GITHUB_RUN_NUMBER + 6))" >> $GITHUB_ENV
+        env:
+          GITHUB_RUN_NUMBER: ${{ github.run_number }}
+
+      - name: Version Bump
+        uses: chkfung/android-version-actions@v1.2.3
+        with:
+          gradlePath: app/build.gradle.kts
+          versionCode: ${{ env.adjusted_run_number }}
 
       - name: Build Release AAB
         env:
@@ -46,4 +58,4 @@ jobs:
           packageName: com.suyogbauskar.calmora
           releaseFiles: app/build/outputs/bundle/release/app-release.aab
           track: beta
-          whatsNewDirectory: release-notes
+          whatsNewDirectory: whatsNew
