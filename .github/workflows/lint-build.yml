@@ -18,6 +18,12 @@ jobs:
           DATA: ${{ secrets.GOOGLE_SERVICES_JSON }}
         run: echo "$DATA" | base64 --decode > app/google-services.json
 
+      - name: Decode and Restore Keystore
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+        run: |
+          echo $KEYSTORE_BASE64 | base64 -d > release.keystore
+
       - name: Set up JDK
         uses: actions/setup-java@v4
         with:
@@ -32,6 +38,14 @@ jobs:
           report-path: build/reports/*.xml
           ignore-warnings: true
         continue-on-error: false
+
+      - name: Build Release AAB
+        env:
+          KEYSTORE_PATH: ${{ github.workspace }}/release.keystore
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+        run: ./gradlew bundleRelease
 
       - name: Build gradle project
         run: ./gradlew build
