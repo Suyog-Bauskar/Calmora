@@ -1,15 +1,18 @@
 package com.suyogbauskar.calmora;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class QuestionsActivity extends AppCompatActivity {
-
+    private AppCompatButton nextbtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,5 +23,14 @@ public class QuestionsActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        nextbtn=findViewById(R.id.nextBtn);
+        nextbtn.setOnClickListener(view -> handleNextButtonClick());
+
+
+    }
+
+    private void handleNextButtonClick() {
+        startActivity(new Intent(QuestionsActivity.this, HomeActivity.class));
     }
 }
