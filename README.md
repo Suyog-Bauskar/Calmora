@@ -1,1 +1,1 @@
-Enforce check
+Check if restrictions are enforced
