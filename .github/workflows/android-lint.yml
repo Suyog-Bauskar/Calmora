@@ -1,4 +1,4 @@
-name: Lint and Build
+name: AndroidLint
 
 on:
   pull_request:
@@ -18,7 +18,7 @@ jobs:
           DATA: ${{ secrets.GOOGLE_SERVICES_JSON }}
         run: echo "$DATA" | base64 --decode > app/google-services.json
 
-      - name: Set up JDK
+      - name: set up JDK
         uses: actions/setup-java@v4
         with:
           distribution: zulu
@@ -32,6 +32,3 @@ jobs:
           report-path: build/reports/*.xml
           ignore-warnings: true
         continue-on-error: false
-
-      - name: Build gradle project
-        run: ./gradlew build
