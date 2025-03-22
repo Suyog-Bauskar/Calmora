@@ -81,4 +81,7 @@ dependencies {
     implementation("com.google.android.gms:play-services-auth:21.3.0")
     implementation ("com.airbnb.android:lottie:6.6.2")
     implementation("com.github.f0ris.sweetalert:library:1.5.6")
+    implementation ("androidx.viewpager2:viewpager2:1.0.0")
+    implementation ("com.google.android.material:material:1.6.1")
+    implementation ("com.tbuonomo:dotsindicator:4.3")
 }

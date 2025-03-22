@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/symptombg"
+    tools:context=".fragments.TremblingorShakingFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fear of Heights (Acrophobia)"
+            android:layout_gravity="center"
+            android:textColor="#166035"
+            android:textSize="28sp"
+            android:fontFamily="@font/abhayalibrebold"
+            android:layout_marginTop="20dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Understand Your Fear and Learn to Overcome "
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:fontFamily="@font/abhayalibraregular"
+            android:layout_marginTop="10dp"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="226dp"
+            android:layout_margin="10dp"
+            android:layout_gravity="center"
+            android:src="@drawable/shaking"
+            android:layout_marginTop="10dp"/>
+
+        <LinearLayout
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:orientation="vertical"
+            android:padding="25dp"
+            android:background="@drawable/shakingbg">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="20sp"
+                android:fontFamily="@font/inter_18pt_bold"
+                android:textColor="#FF8F00"
+                android:text="Trembling or Shaking"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="20sp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/inter_18pt_regular"
+                android:textColor="@color/black"
+                android:textAlignment="center"
+                android:text="1. Muscles quiver or shake uncontrollably."/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="20sp"
+                android:fontFamily="@font/inter_18pt_regular"
+                android:textColor="@color/black"
+                android:textAlignment="center"
+                android:layout_marginTop="10dp"
+                android:text="2. Commonly felt in the legs and hands."/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="20sp"
+                android:fontFamily="@font/inter_18pt_regular"
+                android:textColor="@color/black"
+                android:textAlignment="center"
+                android:layout_marginTop="10dp"
+                android:text="3. Movements feel unstable or weak, adding to the fear."/>
+        </LinearLayout>
+    </LinearLayout>
+
+</FrameLayout>
