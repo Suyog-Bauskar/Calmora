@@ -47,15 +47,6 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
             signingConfig = signingConfigs.findByName("release") ?: signingConfigs.getByName("debug")
         }
-//        release {
-//            signingConfig = signingConfigs.getByName("release")
-//            isMinifyEnabled = true
-//            isDebuggable = false
-//            proguardFiles(
-//                getDefaultProguardFile("proguard-android-optimize.txt"),
-//                "proguard-rules.pro"
-//            )
-//        }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -78,10 +69,10 @@ dependencies {
     //Firestore
     implementation(libs.firebase.firestore)
 
-    implementation("com.google.android.gms:play-services-auth:21.3.0")
-    implementation ("com.airbnb.android:lottie:6.6.2")
-    implementation("com.github.f0ris.sweetalert:library:1.5.6")
-    implementation ("androidx.viewpager2:viewpager2:1.0.0")
-    implementation ("com.google.android.material:material:1.6.1")
-    implementation ("com.tbuonomo:dotsindicator:4.3")
+    implementation(libs.play.services.auth)
+    implementation (libs.lottie)
+    implementation(libs.library)
+    implementation (libs.viewpager2)
+    implementation (libs.material.v161)
+    implementation (libs.dotsindicator)
 }
