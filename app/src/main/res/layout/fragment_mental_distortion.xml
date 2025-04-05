@@ -17,9 +17,10 @@
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/abhayalibrebold"
-            android:text="Fear of Heights (Acrophobia)"
+            android:text="Fear of Enclosed Spaces\n(Claustrophobia)"
+            android:textAlignment="center"
             android:textColor="#166035"
-            android:textSize="28sp" />
+            android:textSize="26sp" />
 
 
         <TextView
