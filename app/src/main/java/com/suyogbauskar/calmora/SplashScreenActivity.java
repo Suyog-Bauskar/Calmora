@@ -1,5 +1,10 @@
 package com.suyogbauskar.calmora;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import com.airbnb.lottie.LottieAnimationView;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,10 +15,11 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.airbnb.lottie.LottieAnimationView;
-
 public class SplashScreenActivity extends AppCompatActivity {
+
     LottieAnimationView animationView;
+    FirebaseUser mUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,10 +32,16 @@ public class SplashScreenActivity extends AppCompatActivity {
         });
 
         animationView = findViewById(R.id.lottie);
+        mUser = FirebaseAuth.getInstance().getCurrentUser();
+
         animationView.playAnimation();
 
         new Handler().postDelayed(() -> {
-            startActivity(new Intent(SplashScreenActivity.this, StartActivity.class));
+            if (mUser != null) {
+                startActivity(new Intent(SplashScreenActivity.this, HomeActivity.class));
+            } else {
+                startActivity(new Intent(SplashScreenActivity.this, StartActivity.class));
+            }
             finish();
         }, 2000);
     }
