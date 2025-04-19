@@ -19,14 +19,26 @@
         android:theme="@style/Theme.Calmora"
         tools:targetApi="31">
         <activity
+            android:name=".MusicCategoryScreen"
+            android:exported="false" />
+        <activity
+            android:name=".BasicCourse"
+            android:exported="true"></activity>
+        <activity
             android:name=".ImageContainer"
             android:exported="false" />
         <activity
             android:name=".HomeActivity"
-            android:exported="true"></activity>
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".QuestionsActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".PersonalInformationActivity"
             android:exported="false" />
@@ -35,13 +47,7 @@
             android:exported="false" />
         <activity
             android:name=".SplashScreenActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".LoginActivity"
             android:exported="false" />
