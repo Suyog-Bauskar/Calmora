@@ -28,12 +28,15 @@ android {
 
     signingConfigs {
         create("release") {
-            val keystorePath = localProperties.getProperty("KEYSTORE_PATH") ?: System.getenv("KEYSTORE_PATH")
+            val keystorePath =
+                localProperties.getProperty("KEYSTORE_PATH") ?: System.getenv("KEYSTORE_PATH")
             if (!keystorePath.isNullOrEmpty()) {
                 storeFile = file(keystorePath)
-                storePassword = localProperties.getProperty("KEYSTORE_PASSWORD") ?: System.getenv("KEYSTORE_PASSWORD")
+                storePassword = localProperties.getProperty("KEYSTORE_PASSWORD")
+                    ?: System.getenv("KEYSTORE_PASSWORD")
                 keyAlias = localProperties.getProperty("KEY_ALIAS") ?: System.getenv("KEY_ALIAS")
-                keyPassword = localProperties.getProperty("KEY_PASSWORD") ?: System.getenv("KEY_PASSWORD")
+                keyPassword =
+                    localProperties.getProperty("KEY_PASSWORD") ?: System.getenv("KEY_PASSWORD")
             } else {
                 println("⚠️ Keystore is missing, falling back to debug signing.")
             }
@@ -44,8 +47,12 @@ android {
         getByName("release") {
             isMinifyEnabled = true
             isDebuggable = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-            signingConfig = signingConfigs.findByName("release") ?: signingConfigs.getByName("debug")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+            signingConfig =
+                signingConfigs.findByName("release") ?: signingConfigs.getByName("debug")
         }
     }
     compileOptions {
@@ -70,9 +77,14 @@ dependencies {
     implementation(libs.firebase.firestore)
 
     implementation(libs.play.services.auth)
-    implementation (libs.lottie)
+    implementation(libs.lottie)
     implementation(libs.library)
-    implementation (libs.viewpager2)
-    implementation (libs.material.v161)
-    implementation (libs.dotsindicator)
+    implementation(libs.viewpager2)
+    implementation(libs.material.v161)
+    implementation(libs.dotsindicator)
+
+
+    implementation(libs.mpandroidchart)
+
+
 }

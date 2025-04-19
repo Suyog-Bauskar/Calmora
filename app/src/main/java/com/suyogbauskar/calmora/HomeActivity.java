@@ -9,6 +9,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.suyogbauskar.calmora.fragments.HomeFragment;
+import com.suyogbauskar.calmora.fragments.LeaderBoardFragment;
 import com.suyogbauskar.calmora.fragments.ProfileFragment;
 
 
@@ -30,6 +31,7 @@ public class HomeActivity extends AppCompatActivity {
 
         Fragment homeFragment = new HomeFragment();
         Fragment profileFragment = new ProfileFragment();
+        Fragment leaderBoardFragment = new LeaderBoardFragment();
 
         // Set default fragment
         setCurrentFragment(homeFragment);
@@ -41,6 +43,8 @@ public class HomeActivity extends AppCompatActivity {
                 setCurrentFragment(homeFragment);
             } else if (itemId == R.id.profile) {
                 setCurrentFragment(profileFragment);
+            }else if(itemId == R.id.leaderBoard){
+                setCurrentFragment(leaderBoardFragment);
             }
             return true;
         });

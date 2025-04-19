@@ -4,7 +4,10 @@
         android:id="@+id/home"
         android:icon="@drawable/home1"
         />
-
+    <item android:title="LeaderBoard"
+        android:id="@+id/leaderBoard"
+        android:icon="@drawable/leaderboardicon"
+        />
     <item android:title="Profile"
         android:id="@+id/profile"
         android:icon="@drawable/profileicon"/>
