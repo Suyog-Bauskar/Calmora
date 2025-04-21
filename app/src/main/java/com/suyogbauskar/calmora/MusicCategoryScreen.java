@@ -12,7 +12,9 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MusicCategoryScreen extends AppCompatActivity {
+
     private LinearLayout relaxCard, spiritualCard, energeticCard, stressFreeCard;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +49,4 @@ public class MusicCategoryScreen extends AppCompatActivity {
         stressFreeCard.setOnClickListener(listener);
     }
 }
-
-
 
