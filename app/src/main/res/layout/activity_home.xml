@@ -5,16 +5,16 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
     android:background="@drawable/signbg"
+    android:gravity="center"
+    android:orientation="vertical"
     tools:context=".HomeActivity">
 
     <FrameLayout
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
-        android:layout_weight="1"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -22,5 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        app:menu="@menu/menu"/>
+        app:itemIconTint="#2D9057"
+        app:itemRippleColor="#2D9057"
+        app:menu="@menu/menu" />
 </LinearLayout>

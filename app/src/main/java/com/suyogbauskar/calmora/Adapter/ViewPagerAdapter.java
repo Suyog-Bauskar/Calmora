@@ -2,6 +2,7 @@ package com.suyogbauskar.calmora.Adapter;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.suyogbauskar.calmora.fragments.AnxityFragment;
@@ -14,14 +15,18 @@ import com.suyogbauskar.calmora.fragments.ShortnessofBreathFragment;
 import com.suyogbauskar.calmora.fragments.TremblingorShakingFragment;
 
 public class ViewPagerAdapter extends FragmentStateAdapter {
+
     public ViewPagerAdapter(@NonNull Fragment fragment) {
         super(fragment);
+    }
+
+    public ViewPagerAdapter(@NonNull FragmentActivity activity) {
+        super(activity);
     }
 
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-
         switch (position) {
             case 0:
                 return new DizzinessVertigoFragment();
@@ -38,7 +43,7 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
             case 6:
                 return new FeelingOfSuffocationFragment();
             case 7:
-                return new NauseaFragment ();
+                return new NauseaFragment();
             default:
                 return new DizzinessVertigoFragment();
         }
