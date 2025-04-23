@@ -144,5 +144,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private void goToPersonalInformationScreen() {
         startActivity(new Intent(LoginActivity.this, PersonalInformationActivity.class));
+        finish();
     }
 }

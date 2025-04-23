@@ -94,6 +94,7 @@ public class PersonalInformationActivity extends AppCompatActivity {
                     progressDialog.hide();
                     if (task.isSuccessful()) {
                         startActivity(new Intent(PersonalInformationActivity.this, QuestionsActivity.class));
+                        finish();
                     } else {
                         Toast.makeText(PersonalInformationActivity.this, "Save failed", Toast.LENGTH_SHORT).show();
                     }

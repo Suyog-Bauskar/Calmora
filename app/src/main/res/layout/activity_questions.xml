@@ -23,6 +23,7 @@
         android:textStyle="bold" />
 
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="300dp"
         android:layout_height="match_parent"
         android:layout_gravity="center"
@@ -943,7 +944,7 @@
                     android:layout_margin="10dp"
                     android:background="@drawable/rounded_corners"
                     android:fontFamily="sans-serif"
-                    android:text="No, I don’t think I need it"
+                    android:text="No, I don't think I need it"
                     android:textColor="@color/black" />
 
                 <RadioButton
