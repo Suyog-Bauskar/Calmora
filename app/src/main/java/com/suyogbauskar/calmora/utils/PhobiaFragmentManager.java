@@ -5,6 +5,7 @@ import android.content.Context;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.suyogbauskar.calmora.utils.ProgressDialog;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -50,16 +51,21 @@ public class PhobiaFragmentManager {
 
     /**
      * Get the user's phobia type from Firestore
+     * @param context Context for showing progress dialog
      * @param callback Callback to handle the determined phobia type
      */
     public static void getUserPhobiaType(Context context, PhobiaTypeCallback callback) {
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+        ProgressDialog progressDialog = new ProgressDialog();
 
         if (auth.getCurrentUser() == null) {
             callback.onPhobiaTypeDetermined(UNKNOWN_PHOBIA);
             return;
         }
+
+        // Show loading dialog
+        progressDialog.show(context);
 
         String userId = auth.getCurrentUser().getUid();
 
@@ -70,6 +76,9 @@ public class PhobiaFragmentManager {
                 .document("responses")
                 .get()
                 .addOnSuccessListener(documentSnapshot -> {
+                    // Hide loading dialog
+                    progressDialog.hide();
+                    
                     if (documentSnapshot.exists() && documentSnapshot.getData() != null) {
                         Map<String, Object> data = documentSnapshot.getData();
                         Map<String, String> responses = new HashMap<>();
@@ -85,7 +94,11 @@ public class PhobiaFragmentManager {
                         callback.onPhobiaTypeDetermined(UNKNOWN_PHOBIA);
                     }
                 })
-                .addOnFailureListener(e -> callback.onPhobiaTypeDetermined(UNKNOWN_PHOBIA));
+                .addOnFailureListener(e -> {
+                    // Hide loading dialog
+                    progressDialog.hide();
+                    callback.onPhobiaTypeDetermined(UNKNOWN_PHOBIA);
+                });
     }
 
     /**

@@ -8,8 +8,10 @@ import com.suyogbauskar.calmora.fragments.HomeFragment;
 import com.suyogbauskar.calmora.fragments.LeaderBoardFragment;
 import com.suyogbauskar.calmora.fragments.ProfileFragment;
 import com.suyogbauskar.calmora.utils.PhobiaAnalyzer;
+import com.suyogbauskar.calmora.utils.ProgressDialog;
 
 import android.app.Dialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Window;
 import android.widget.Button;
@@ -29,6 +31,11 @@ import androidx.fragment.app.Fragment;
 public class HomeActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private FirebaseAuth auth;
+    private ProgressDialog progressDialog;
+    
+    // SharedPreferences key for tracking if dialog has been shown
+    private static final String PREFS_NAME = "CalmOraPrefs";
+    private static final String KEY_DIALOG_SHOWN = "phobia_dialog_shown";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +52,9 @@ public class HomeActivity extends AppCompatActivity {
         // Initialize Firebase
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
+        
+        // Initialize progress dialog
+        progressDialog = new ProgressDialog();
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavView);
 
@@ -83,9 +93,20 @@ public class HomeActivity extends AppCompatActivity {
         if (auth.getCurrentUser() == null) {
             return; // Not logged in
         }
-
+        
+        // Check if dialog has already been shown
+        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         String userId = auth.getCurrentUser().getUid();
+        String dialogShownKey = KEY_DIALOG_SHOWN + "_" + userId; // Make it unique per user
+        
+        if (prefs.getBoolean(dialogShownKey, false)) {
+            // Dialog has already been shown to this user
+            return;
+        }
 
+        // Show loading dialog
+        progressDialog.show(this);
+        
         // Check for questionnaire data
         db.collection("Users")
                 .document(userId)
@@ -93,6 +114,9 @@ public class HomeActivity extends AppCompatActivity {
                 .document("responses")
                 .get()
                 .addOnSuccessListener(documentSnapshot -> {
+                    // Hide loading dialog
+                    progressDialog.hide();
+                    
                     if (documentSnapshot.exists()) {
                         // Convert document data to map
                         Map<String, String> responses = new HashMap<>();
@@ -105,11 +129,19 @@ public class HomeActivity extends AppCompatActivity {
                             
                             // Show the analysis dialog
                             showPhobiaAnalysisDialog(responses);
+                            
+                            // Mark dialog as shown for this user
+                            SharedPreferences.Editor editor = prefs.edit();
+                            editor.putBoolean(dialogShownKey, true);
+                            editor.apply();
                         }
                     }
                 })
-                .addOnFailureListener(e -> 
-                    Toast.makeText(HomeActivity.this, "Error retrieving questionnaire data", Toast.LENGTH_SHORT).show());
+                .addOnFailureListener(e -> {
+                    // Hide loading dialog
+                    progressDialog.hide();
+                    Toast.makeText(HomeActivity.this, "Error retrieving questionnaire data", Toast.LENGTH_SHORT).show();
+                });
     }
 
     private void showPhobiaAnalysisDialog(Map<String, String> responses) {
@@ -145,7 +177,7 @@ public class HomeActivity extends AppCompatActivity {
         tvPhysicalSymptoms.setText(analysis.getPhysicalSymptoms());
         tvRecommendedTherapy.setText(analysis.getRecommendedTherapy());
         
-        // Handle start therapy button click
+        // Handle button click
         btnStartTherapy.setOnClickListener(v -> {
             // Close the dialog
             dialog.dismiss();

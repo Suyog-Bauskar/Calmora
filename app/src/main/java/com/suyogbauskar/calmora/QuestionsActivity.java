@@ -18,6 +18,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.suyogbauskar.calmora.utils.ProgressDialog;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,6 +30,7 @@ public class QuestionsActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private FirebaseAuth auth;
     private List<RadioGroup> radioGroups = new ArrayList<>();
+    private ProgressDialog progressDialog;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,9 @@ public class QuestionsActivity extends AppCompatActivity {
         // Initialize Firebase
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
+        
+        // Initialize progress dialog
+        progressDialog = new ProgressDialog();
         
         // Find and collect all RadioGroups
         findAllRadioGroups();
@@ -120,6 +125,9 @@ public class QuestionsActivity extends AppCompatActivity {
             return;
         }
         
+        // Show loading dialog
+        progressDialog.show(this);
+        
         String userId = auth.getCurrentUser().getUid();
         Map<String, String> answers = new HashMap<>();
         
@@ -143,10 +151,14 @@ public class QuestionsActivity extends AppCompatActivity {
             .document("responses")
             .set(answers)
             .addOnSuccessListener(aVoid -> {
+                // Hide loading dialog
+                progressDialog.hide();
                 startActivity(new Intent(QuestionsActivity.this, HomeActivity.class));
                 finish(); // Close this activity
             })
             .addOnFailureListener(e -> {
+                // Hide loading dialog
+                progressDialog.hide();
                 Toast.makeText(QuestionsActivity.this, "Failed to save responses: " + e.getMessage(), 
                         Toast.LENGTH_SHORT).show();
             });
