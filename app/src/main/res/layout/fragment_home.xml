@@ -14,13 +14,30 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Search Icon -->
-        <ImageView
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:contentDescription="Search Icon"
-            android:padding="10dp"
-            android:src="@drawable/searchicon" />
+        <!-- Top Bar with Search and Signout -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Search Icon -->
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:contentDescription="Search Icon"
+                android:padding="10dp"
+                android:src="@drawable/searchicon" />
+
+            <!-- Sign Out Icon -->
+            <ImageView
+                android:id="@+id/iv_signout"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_alignParentEnd="true"
+                android:contentDescription="Sign Out"
+                android:padding="10dp"
+                android:src="@drawable/ic_logout" />
+        </RelativeLayout>
 
         <!-- Greeting Text -->
         <TextView

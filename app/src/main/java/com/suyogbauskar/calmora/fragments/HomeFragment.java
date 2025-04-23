@@ -6,6 +6,9 @@ import com.suyogbauskar.calmora.MusicCategoryScreen;
 import com.suyogbauskar.calmora.R;
 import com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator;
 import com.suyogbauskar.calmora.utils.PhobiaFragmentManager;
+import com.suyogbauskar.calmora.utils.ProgressDialog;
+import com.suyogbauskar.calmora.LoginActivity;
+import com.google.firebase.auth.FirebaseAuth;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -21,9 +24,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -37,6 +42,9 @@ public class HomeFragment extends Fragment {
 
     private Button startButton, btn_relaxation_start;
     private RelativeLayout dailyThoughtButton;
+    private ImageView signOutButton;
+    private FirebaseAuth auth;
+    private ProgressDialog progressDialog;
     private List<ThoughtItem> dailyThoughts;
     private Random random;
     private int lastThoughtIndex = -1;
@@ -65,6 +73,10 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
+        // Initialize Firebase Auth
+        auth = FirebaseAuth.getInstance();
+        progressDialog = new ProgressDialog();
+        
         // Initialize the daily thoughts collection
         initializeDailyThoughts();
         
@@ -73,6 +85,14 @@ public class HomeFragment extends Fragment {
 
         startButton = view.findViewById(R.id.btn_basics_start);
         btn_relaxation_start = view.findViewById(R.id.btn_relaxation_start);
+        signOutButton = view.findViewById(R.id.iv_signout);
+
+        // Show sign out button only if user is logged in
+        if (auth.getCurrentUser() != null) {
+            signOutButton.setVisibility(View.VISIBLE);
+        } else {
+            signOutButton.setVisibility(View.GONE);
+        }
 
         startButton.setOnClickListener(v -> {
             // Load the phobia-specific course content
@@ -84,11 +104,46 @@ public class HomeFragment extends Fragment {
             startActivity(intent);
         });
 
+        // Sign out button click listener
+        signOutButton.setOnClickListener(v -> showSignOutConfirmationDialog());
+
         // Daily thought dialog button
         dailyThoughtButton = view.findViewById(R.id.btn_daily_thought);
         dailyThoughtButton.setOnClickListener(v -> showDailyThoughtDialog());
 
         return view;
+    }
+
+    /**
+     * Show a confirmation dialog before signing out
+     */
+    private void showSignOutConfirmationDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+        builder.setTitle("Sign Out");
+        builder.setMessage("Are you sure you want to sign out?");
+        builder.setPositiveButton("Yes", (dialog, which) -> signOut());
+        builder.setNegativeButton("No", (dialog, which) -> dialog.dismiss());
+        builder.create().show();
+    }
+
+    /**
+     * Sign out the current user and navigate to login screen
+     */
+    private void signOut() {
+        progressDialog.show(requireContext());
+        
+        try {
+            auth.signOut();
+            
+            // Navigate to login screen
+            Intent intent = new Intent(getActivity(), LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        } catch (Exception e) {
+            Toast.makeText(getContext(), "Sign out failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        } finally {
+            progressDialog.hide();
+        }
     }
 
     /**
