@@ -133,6 +133,11 @@ public class HomeFragment extends Fragment {
         progressDialog.show(requireContext());
         
         try {
+            // Clear the dialog shown preference for this user
+            String userId = auth.getCurrentUser().getUid();
+            resetPhobiaDialogPreference(userId);
+            
+            // Sign out the user
             auth.signOut();
             
             // Navigate to login screen
@@ -144,6 +149,25 @@ public class HomeFragment extends Fragment {
         } finally {
             progressDialog.hide();
         }
+    }
+    
+    /**
+     * Reset the phobia dialog shown preference for the user
+     * @param userId The user ID to reset the preference for
+     */
+    private void resetPhobiaDialogPreference(String userId) {
+        if (userId == null) return;
+        
+        // Get shared preferences
+        final String PREFS_NAME = "CalmOraPrefs";
+        final String KEY_DIALOG_SHOWN = "phobia_dialog_shown";
+        String dialogShownKey = KEY_DIALOG_SHOWN + "_" + userId;
+        
+        // Clear the preference
+        requireActivity().getSharedPreferences(PREFS_NAME, requireActivity().MODE_PRIVATE)
+                .edit()
+                .remove(dialogShownKey)
+                .apply();
     }
 
     /**

@@ -129,6 +129,10 @@ public class QuestionsActivity extends AppCompatActivity {
         progressDialog.show(this);
         
         String userId = auth.getCurrentUser().getUid();
+        
+        // Reset dialog preference to ensure the analysis dialog shows up in HomeActivity
+        resetPhobiaDialogPreference(userId);
+        
         Map<String, String> answers = new HashMap<>();
         
         // Collect all answers
@@ -162,5 +166,25 @@ public class QuestionsActivity extends AppCompatActivity {
                 Toast.makeText(QuestionsActivity.this, "Failed to save responses: " + e.getMessage(), 
                         Toast.LENGTH_SHORT).show();
             });
+    }
+    
+    /**
+     * Reset the phobia dialog shown preference for the user to ensure
+     * the analysis dialog is shown again when they log back in
+     * @param userId The user ID to reset the preference for
+     */
+    private void resetPhobiaDialogPreference(String userId) {
+        if (userId == null) return;
+        
+        // Get shared preferences
+        final String PREFS_NAME = "CalmOraPrefs";
+        final String KEY_DIALOG_SHOWN = "phobia_dialog_shown";
+        String dialogShownKey = KEY_DIALOG_SHOWN + "_" + userId;
+        
+        // Clear the preference
+        getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+                .edit()
+                .remove(dialogShownKey)
+                .apply();
     }
 }
