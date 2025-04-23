@@ -34,7 +34,7 @@
             android:name=".ImageContainer"
             android:exported="false" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".SplashScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -52,7 +52,7 @@
             android:name=".SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashScreenActivity"
+            android:name=".HomeActivity"
             android:exported="true" />
         <activity
             android:name=".LoginActivity"
