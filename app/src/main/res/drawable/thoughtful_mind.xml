@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="200dp"
+    android:viewportWidth="800"
+    android:viewportHeight="800">
+    
+    <!-- Background gradient -->
+    <path
+        android:fillColor="#E8F5E9"
+        android:pathData="M0,0h800v800H0z" />
+    
+    <!-- Head silhouette -->
+    <path
+        android:fillColor="#388E3C"
+        android:pathData="M400,650 C550,650 650,500 650,400 C650,250 550,150 400,150 C250,150 150,250 150,400 C150,500 250,650 400,650 Z" />
+    
+    <!-- Brain lines -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="8"
+        android:strokeLineCap="round"
+        android:pathData="M250,350 C300,300 380,300 400,350 C420,300 500,300 550,350" />
+    
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="8"
+        android:strokeLineCap="round"
+        android:pathData="M300,400 C350,350 450,350 500,400" />
+    
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="8"
+        android:strokeLineCap="round"
+        android:pathData="M350,450 C375,425 425,425 450,450" />
+    
+    <!-- Thought bubbles -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M500,200a40,40 0 1 0 0.01,0z" />
+    
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M550,180a25,25 0 1 0 0.01,0z" />
+    
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M580,150a15,15 0 1 0 0.01,0z" />
+    
+    <!-- Lotus flower in the center -->
+    <path
+        android:fillColor="#BBDEFB"
+        android:pathData="M400,450a15,15 0 1 0 0.01,0z" />
+    
+    <!-- Lotus petals -->
+    <path
+        android:fillColor="#4CAF50"
+        android:pathData="M400,420a20,30 0 1 0 0.01,0z" />
+    
+    <path
+        android:fillColor="#4CAF50"
+        android:pathData="M430,435a30,20 0 1 0 0.01,0z" />
+    
+    <path
+        android:fillColor="#4CAF50"
+        android:pathData="M400,470a20,30 0 1 0 0.01,0z" />
+    
+    <path
+        android:fillColor="#4CAF50"
+        android:pathData="M370,435a30,20 0 1 0 0.01,0z" />
+</vector> 

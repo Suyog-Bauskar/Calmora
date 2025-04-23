@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="200dp"
+    android:viewportWidth="800"
+    android:viewportHeight="800">
+    
+    <!-- Sky background -->
+    <path
+        android:fillColor="#E1F5FE"
+        android:pathData="M0,0h800v400H0z" />
+    
+    <!-- Mountains backdrop -->
+    <path
+        android:fillColor="#B3E5FC"
+        android:pathData="M0,150 L100,100 L200,180 L300,80 L400,150 L500,50 L600,180 L700,120 L800,150 L800,400 L0,400 Z" />
+    
+    <!-- Sun -->
+    <path
+        android:fillColor="#FFFDE7"
+        android:pathData="M650,100a60,60 0 1 0 0.01,0z" />
+    
+    <!-- Calm water surface -->
+    <path
+        android:fillColor="#66BB6A"
+        android:pathData="M0,400 L800,400 L800,800 L0,800 Z" />
+    
+    <!-- Horizontal wave lines -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="5"
+        android:strokeAlpha="0.5"
+        android:strokeLineCap="round"
+        android:pathData="M100,450 L700,450" />
+    
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="5"
+        android:strokeAlpha="0.5"
+        android:strokeLineCap="round"
+        android:pathData="M150,500 L650,500" />
+    
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="5"
+        android:strokeAlpha="0.5"
+        android:strokeLineCap="round"
+        android:pathData="M200,550 L600,550" />
+    
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="5"
+        android:strokeAlpha="0.5"
+        android:strokeLineCap="round"
+        android:pathData="M250,600 L550,600" />
+    
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="5"
+        android:strokeAlpha="0.4"
+        android:strokeLineCap="round"
+        android:pathData="M300,650 L500,650" />
+    
+    <!-- Lotus floating on water -->
+    <path
+        android:fillColor="#4CAF50"
+        android:pathData="M400,510a30,10 0 1 0 0.01,0z" />
+    
+    <!-- Lotus flower petals -->
+    <path
+        android:fillColor="#81C784"
+        android:pathData="M400,480a15,25 0 1 0 0.01,0z" />
+    
+    <path
+        android:fillColor="#81C784"
+        android:pathData="M420,490a25,15 0 1 0 0.01,0z" />
+    
+    <path
+        android:fillColor="#81C784"
+        android:pathData="M400,500a15,25 0 1 0 0.01,0z" />
+    
+    <path
+        android:fillColor="#81C784"
+        android:pathData="M380,490a25,15 0 1 0 0.01,0z" />
+    
+    <!-- Lotus center -->
+    <path
+        android:fillColor="#FFF9C4"
+        android:pathData="M400,490a10,10 0 1 0 0.01,0z" />
+    
+    <!-- Dove in flight -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M200,200 C220,180 230,190 250,180 C270,170 290,190 270,200 C250,210 230,200 200,200 Z" />
+    
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M270,200 L300,170" />
+    
+    <!-- Rocks by the shore -->
+    <path
+        android:fillColor="#78909C"
+        android:pathData="M100,400 C120,380 150,390 160,400 L100,400 Z" />
+    
+    <path
+        android:fillColor="#90A4AE"
+        android:pathData="M700,400 C680,380 650,390 640,400 L700,400 Z" />
+    
+    <!-- Foreground meditation stones -->
+    <path
+        android:fillColor="#607D8B"
+        android:pathData="M300,700a40,20 0 1 0 0.01,0z" />
+    
+    <path
+        android:fillColor="#546E7A"
+        android:pathData="M300,670a30,15 0 1 0 0.01,0z" />
+    
+    <path
+        android:fillColor="#455A64"
+        android:pathData="M300,650a20,10 0 1 0 0.01,0z" />
+    
+    <path
+        android:fillColor="#607D8B"
+        android:pathData="M500,700a40,20 0 1 0 0.01,0z" />
+    
+    <path
+        android:fillColor="#546E7A"
+        android:pathData="M500,670a30,15 0 1 0 0.01,0z" />
+    
+    <path
+        android:fillColor="#455A64"
+        android:pathData="M500,650a20,10 0 1 0 0.01,0z" />
+</vector> 

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="200dp"
+    android:viewportWidth="800"
+    android:viewportHeight="800">
+    
+    <!-- Background -->
+    <path
+        android:fillColor="#FFF8E1"
+        android:pathData="M0,0h800v800H0z" />
+    
+    <!-- Sun rays -->
+    <path
+        android:strokeColor="#FFA000"
+        android:strokeWidth="12"
+        android:pathData="M400,400L400,200" />
+    <path
+        android:strokeColor="#FFA000"
+        android:strokeWidth="12"
+        android:pathData="M400,400L282,282" />
+    <path
+        android:strokeColor="#FFA000"
+        android:strokeWidth="12"
+        android:pathData="M400,400L200,400" />
+    <path
+        android:strokeColor="#FFA000"
+        android:strokeWidth="12"
+        android:pathData="M400,400L282,518" />
+    <path
+        android:strokeColor="#FFA000"
+        android:strokeWidth="12"
+        android:pathData="M400,400L400,600" />
+    <path
+        android:strokeColor="#FFA000"
+        android:strokeWidth="12"
+        android:pathData="M400,400L518,518" />
+    <path
+        android:strokeColor="#FFA000"
+        android:strokeWidth="12"
+        android:pathData="M400,400L600,400" />
+    <path
+        android:strokeColor="#FFA000"
+        android:strokeWidth="12"
+        android:pathData="M400,400L518,282" />
+    
+    <!-- Center circle -->
+    <path
+        android:fillColor="#43A047"
+        android:pathData="M400,400a80,80 0 1 0 0.01,0z" />
+    
+    <!-- Hands in gratitude gesture -->
+    <path
+        android:fillColor="#8D6E63"
+        android:pathData="M330,400 C300,350 330,270 400,300 C470,270 500,350 470,400 C430,450 370,450 330,400 Z" />
+    
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="5"
+        android:pathData="M330,370 C370,400 430,400 470,370" />
+    
+    <!-- Gratitude text letters -->
+    <path
+        android:strokeColor="#66BB6A"
+        android:strokeWidth="20"
+        android:pathData="M250,600 L280,650 L310,600" />
+    
+    <path
+        android:strokeColor="#66BB6A"
+        android:strokeWidth="20"
+        android:pathData="M350,600 L350,650" />
+    
+    <path
+        android:strokeColor="#66BB6A"
+        android:strokeWidth="20"
+        android:pathData="M400,600 L400,650 L430,650" />
+    
+    <path
+        android:strokeColor="#66BB6A"
+        android:strokeWidth="20"
+        android:pathData="M470,600 L470,650" />
+    
+    <path
+        android:strokeColor="#66BB6A"
+        android:strokeWidth="20"
+        android:pathData="M520,600 L520,650 L550,625 L520,600" />
+</vector> 
