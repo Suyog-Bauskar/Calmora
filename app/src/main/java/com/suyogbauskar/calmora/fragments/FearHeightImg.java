@@ -1,5 +1,6 @@
 package com.suyogbauskar.calmora.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,7 +8,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.suyogbauskar.calmora.MusicPlayerActivity;
 import com.suyogbauskar.calmora.R;
 
 /**
@@ -25,6 +29,7 @@ public class FearHeightImg extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private FloatingActionButton panicButton;
 
     public FearHeightImg() {
         // Required empty public constructor
@@ -61,6 +66,36 @@ public class FearHeightImg extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fear_height_img, container, false);
+        View view = inflater.inflate(R.layout.fragment_fear_height_img, container, false);
+        
+        // Find and set up the panic button
+        panicButton = view.findViewById(R.id.panicButton);
+        
+        // Show a tooltip on long press
+        panicButton.setOnLongClickListener(v -> {
+            Toast.makeText(getContext(), "Press for immediate calming music", Toast.LENGTH_SHORT).show();
+            return true;
+        });
+        
+        // Set click listener to start calming music
+        panicButton.setOnClickListener(v -> {
+            Toast.makeText(getContext(), "Starting calming music...", Toast.LENGTH_SHORT).show();
+            startCalmingMusic();
+        });
+        
+        return view;
+    }
+    
+    /**
+     * Start the MusicPlayerActivity with calming music
+     */
+    private void startCalmingMusic() {
+        Intent intent = new Intent(getActivity(), MusicPlayerActivity.class);
+        // Pass the "Relax" category for calming music
+        intent.putExtra("category", "Relax");
+        // Start with "Ocean Breeze" which is a calming track
+        intent.putExtra("title", "Ocean Breeze");
+        intent.putExtra("resId", R.raw.relax1);
+        startActivity(intent);
     }
 }
