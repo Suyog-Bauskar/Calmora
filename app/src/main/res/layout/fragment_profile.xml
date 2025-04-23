@@ -1,13 +1,334 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/signbg"
+    android:padding="16dp"
     tools:context=".fragments.ProfileFragment">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Profile Fragment" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="50dp"
+        android:gravity="center_horizontal">
 
-</FrameLayout>
+        <!-- Name Section -->
+        <LinearLayout
+            android:layout_width="280dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/rounded_background"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:text="Name"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/profileNameEditText"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_corners"
+                android:hint=""
+                android:importantForAutofill="no"
+                android:inputType="textPersonName"
+                android:padding="8dp"
+                android:singleLine="true"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <!-- Age Group Section -->
+        <LinearLayout
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/rounded_background"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:text="Age Group"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RadioGroup
+                    android:id="@+id/profileAgeGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RadioButton
+                        android:id="@+id/profileGroup1"
+                        android:layout_width="180dp"
+                        android:layout_height="30dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/rounded_corners"
+                        android:padding="4dp"
+                        android:text="06 - 12"
+                        android:textColor="@color/black" />
+
+                    <RadioButton
+                        android:id="@+id/profileGroup2"
+                        android:layout_width="180dp"
+                        android:layout_height="30dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/rounded_corners"
+                        android:padding="4dp"
+                        android:text="13 - 19"
+                        android:textColor="@color/black" />
+
+                    <RadioButton
+                        android:id="@+id/profileGroup3"
+                        android:layout_width="180dp"
+                        android:layout_height="30dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/rounded_corners"
+                        android:padding="4dp"
+                        android:text="20 - 35"
+                        android:textColor="@color/black" />
+
+                    <RadioButton
+                        android:id="@+id/profileGroup4"
+                        android:layout_width="180dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/rounded_corners"
+                        android:padding="4dp"
+                        android:text="36+"
+                        android:textColor="@color/black" />
+                </RadioGroup>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Gender Section -->
+        <LinearLayout
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/rounded_background"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:text="Gender"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:orientation="horizontal">
+
+                <RadioGroup
+                    android:id="@+id/profileGenderGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RadioButton
+                        android:id="@+id/profileMale"
+                        android:layout_width="180dp"
+                        android:layout_height="30dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/rounded_corners"
+                        android:padding="4dp"
+                        android:text="Male"
+                        android:textColor="@color/black" />
+
+                    <RadioButton
+                        android:id="@+id/profileFemale"
+                        android:layout_width="180dp"
+                        android:layout_height="30dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/rounded_corners"
+                        android:padding="4dp"
+                        android:text="Female"
+                        android:textColor="@color/black" />
+
+                    <RadioButton
+                        android:id="@+id/profileOthers"
+                        android:layout_width="180dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/rounded_corners"
+                        android:padding="4dp"
+                        android:text="Others"
+                        android:textColor="@color/black" />
+                </RadioGroup>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Notification Time Section -->
+        <LinearLayout
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/rounded_background"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Reminder Time"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/profileSelectedTimeText"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_corners"
+                    android:padding="8dp"
+                    android:gravity="center_vertical"
+                    android:text="Select Time"
+                    android:textColor="@color/black" />
+
+                <Button
+                    android:id="@+id/profileSelectTimeButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="8dp"
+                    android:backgroundTint="#2D2D2D"
+                    android:text="Set"
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Therapy Days Section -->
+        <LinearLayout
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/rounded_background"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Therapy Days"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:id="@+id/checkBoxMonday"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginBottom="4dp"
+                android:background="@drawable/rounded_corners"
+                android:text="Monday"
+                android:textColor="@color/black"
+                android:padding="4dp" />
+
+            <CheckBox
+                android:id="@+id/checkBoxTuesday"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginBottom="4dp"
+                android:background="@drawable/rounded_corners"
+                android:text="Tuesday"
+                android:textColor="@color/black"
+                android:padding="4dp" />
+
+            <CheckBox
+                android:id="@+id/checkBoxWednesday"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginBottom="4dp"
+                android:background="@drawable/rounded_corners"
+                android:text="Wednesday"
+                android:textColor="@color/black"
+                android:padding="4dp" />
+
+            <CheckBox
+                android:id="@+id/checkBoxThursday"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginBottom="4dp"
+                android:background="@drawable/rounded_corners"
+                android:text="Thursday"
+                android:textColor="@color/black"
+                android:padding="4dp" />
+
+            <CheckBox
+                android:id="@+id/checkBoxFriday"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginBottom="4dp"
+                android:background="@drawable/rounded_corners"
+                android:text="Friday"
+                android:textColor="@color/black"
+                android:padding="4dp" />
+
+            <CheckBox
+                android:id="@+id/checkBoxSaturday"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginBottom="4dp"
+                android:background="@drawable/rounded_corners"
+                android:text="Saturday"
+                android:textColor="@color/black"
+                android:padding="4dp" />
+
+            <CheckBox
+                android:id="@+id/checkBoxSunday"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:background="@drawable/rounded_corners"
+                android:text="Sunday"
+                android:textColor="@color/black"
+                android:padding="4dp" />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/profileSaveBtn"
+            android:layout_width="190dp"
+            android:layout_height="55dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="70dp"
+            android:background="@drawable/loginshape"
+            android:clickable="true"
+            android:elevation="5dp"
+            android:text="SAVE"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+</ScrollView>
