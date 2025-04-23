@@ -5,89 +5,348 @@
     android:viewportWidth="800"
     android:viewportHeight="800">
     
-    <!-- Sky background -->
+    <!-- Complete Sky background with gradient -->
+    <path
+        android:fillColor="#C8E6C9"
+        android:pathData="M0,0h800v350H0z" />
+    
     <path
         android:fillColor="#A5D6A7"
-        android:pathData="M0,0h800v600H0z" />
-    
-    <!-- Sun -->
+        android:pathData="M0,350h800v100H0z" />
+        
+    <!-- Sun with gradient -->
     <path
-        android:fillColor="#FFF59D"
+        android:fillColor="#FFEE58"
         android:pathData="M600,150a60,60 0 1 0 0.01,0z" />
-    
-    <!-- Mountains - back -->
     <path
-        android:fillColor="#455A64"
-        android:pathData="M0,300 L100,200 L200,280 L300,180 L400,250 L500,150 L600,280 L700,200 L800,300 L800,600 L0,600 Z" />
+        android:fillColor="#FFFDE7"
+        android:pathData="M600,150a40,40 0 1 0 0.01,0z" />
     
-    <!-- Mountains - front -->
+    <!-- Sun rays -->
     <path
-        android:fillColor="#263238"
-        android:pathData="M0,350 L100,250 L200,350 L300,220 L400,350 L500,220 L600,330 L700,250 L800,350 L800,600 L0,600 Z" />
+        android:fillColor="#FFFDE780"
+        android:pathData="M600,70L600,10L600,70z" />
+    <path
+        android:fillColor="#FFFDE780"
+        android:pathData="M680,150L740,150L680,150z" />
+    <path
+        android:fillColor="#FFFDE780"
+        android:pathData="M600,230L600,290L600,230z" />
+    <path
+        android:fillColor="#FFFDE780"
+        android:pathData="M520,150L460,150L520,150z" />
+    <path
+        android:fillColor="#FFFDE780"
+        android:pathData="M655,95L695,55L655,95z" />
+    <path
+        android:fillColor="#FFFDE780"
+        android:pathData="M655,205L695,245L655,205z" />
+    <path
+        android:fillColor="#FFFDE780"
+        android:pathData="M545,205L505,245L545,205z" />
+    <path
+        android:fillColor="#FFFDE780"
+        android:pathData="M545,95L505,55L545,95z" />
     
-    <!-- Water -->
+    <!-- Far Mountains -->
+    <path
+        android:fillColor="#78909C"
+        android:pathData="M0,320 L80,270 L160,310 L240,260 L320,290 L400,250 L480,300 L560,250 L640,290 L720,240 L800,300 L800,500 L0,500 Z" />
+    
+    <!-- Middle Mountains with details -->
+    <path
+        android:fillColor="#546E7A"
+        android:pathData="M0,350 L100,250 L200,330 L300,240 L400,350 L500,220 L600,330 L700,250 L800,330 L800,500 L0,500 Z" />
+    
+    <!-- Mountain details - snow caps -->
+    <path
+        android:fillColor="#ECEFF1"
+        android:pathData="M500,220 L520,240 L540,230 L560,250 L580,240 L600,260 L620,250 L500,220z" />
+    <path
+        android:fillColor="#ECEFF1"
+        android:pathData="M100,250 L120,270 L140,260 L160,280 L180,260 L100,250z" />
+    <path
+        android:fillColor="#ECEFF1"
+        android:pathData="M700,250 L720,270 L740,265 L760,280 L780,260 L700,250z" />
+    
+    <!-- Front Mountains -->
+    <path
+        android:fillColor="#37474F"
+        android:pathData="M0,380 L80,320 L160,370 L240,310 L320,380 L400,330 L480,390 L560,320 L640,370 L720,320 L800,380 L800,500 L0,500 Z" />
+    
+    <!-- Large Lake spanning the lower half -->
+    <path
+        android:fillColor="#66BB6A"
+        android:pathData="M0,500 L800,500 L800,800 L0,800 Z" />
+    
+    <!-- Lake reflection lines -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1"
+        android:strokeAlpha="0.3"
+        android:pathData="M50,520 L200,520" />
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1"
+        android:strokeAlpha="0.2"
+        android:pathData="M350,540 L650,540" />
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1"
+        android:strokeAlpha="0.2"
+        android:pathData="M150,560 L400,560" />
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1"
+        android:strokeAlpha="0.3"
+        android:pathData="M500,520 L750,520" />
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1"
+        android:strokeAlpha="0.25"
+        android:pathData="M200,580 L500,580" />
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1"
+        android:strokeAlpha="0.2"
+        android:pathData="M400,600 L700,600" />
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1"
+        android:strokeAlpha="0.15"
+        android:pathData="M50,620 L300,620" />
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1"
+        android:strokeAlpha="0.15"
+        android:pathData="M350,640 L600,640" />
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1"
+        android:strokeAlpha="0.1"
+        android:pathData="M150,660 L400,660" />
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1"
+        android:strokeAlpha="0.1"
+        android:pathData="M450,680 L650,680" />
+    
+    <!-- Water lilies on the lake -->
     <path
         android:fillColor="#81C784"
-        android:pathData="M0,500 L800,500 L800,600 L0,600 Z" />
+        android:pathData="M100,550a15,8 0 1 0 0.01,0z" />
+    <path
+        android:fillColor="#AEEA00"
+        android:pathData="M105,550a5,3 0 1 0 0.01,0z" />
     
-    <!-- Trees -->
+    <path
+        android:fillColor="#81C784"
+        android:pathData="M300,580a12,7 0 1 0 0.01,0z" />
+    <path
+        android:fillColor="#AEEA00"
+        android:pathData="M304,580a4,2 0 1 0 0.01,0z" />
+    
+    <path
+        android:fillColor="#81C784"
+        android:pathData="M500,540a18,10 0 1 0 0.01,0z" />
+    <path
+        android:fillColor="#AEEA00"
+        android:pathData="M506,540a6,3 0 1 0 0.01,0z" />
+    
+    <path
+        android:fillColor="#81C784"
+        android:pathData="M650,600a15,8 0 1 0 0.01,0z" />
+    <path
+        android:fillColor="#AEEA00"
+        android:pathData="M655,600a5,3 0 1 0 0.01,0z" />
+    
+    <path
+        android:fillColor="#81C784"
+        android:pathData="M200,620a12,7 0 1 0 0.01,0z" />
+    <path
+        android:fillColor="#AEEA00"
+        android:pathData="M204,620a4,2 0 1 0 0.01,0z" />
+    
+    <path
+        android:fillColor="#81C784"
+        android:pathData="M400,650a15,8 0 1 0 0.01,0z" />
+    <path
+        android:fillColor="#AEEA00"
+        android:pathData="M405,650a5,3 0 1 0 0.01,0z" />
+    
+    <!-- Bottom foreground grass and plants -->
     <path
         android:fillColor="#2E7D32"
-        android:pathData="M150,400a30,50 0 1 0 0.01,0z" />
+        android:pathData="M0,700 C50,690 100,705 150,695 C200,685 250,700 300,690 C350,680 400,695 450,685 C500,675 550,690 600,680 C650,670 700,685 750,675 C775,680 800,675 800,700 L800,800 L0,800 Z" />
+    
     <path
         android:fillColor="#388E3C"
+        android:pathData="M0,730 C40,725 80,735 120,730 C160,725 200,735 240,730 C280,725 320,735 360,730 C400,725 440,735 480,730 C520,725 560,735 600,730 C640,725 680,735 720,730 C760,725 800,735 800,740 L800,800 L0,800 Z" />
+    
+    <!-- Detailed Trees -->
+    <!-- Tree 1 -->
+    <path
+        android:fillColor="#2E7D32"
+        android:pathData="M150,380a40,60 0 1 0 0.01,0z" />
+    <path
+        android:fillColor="#1B5E20"
+        android:pathData="M150,390a30,50 0 1 0 0.01,0z" />
+    
+    <!-- Tree 2 -->
+    <path
+        android:fillColor="#388E3C"
+        android:pathData="M250,370a35,50 0 1 0 0.01,0z" />
+    <path
+        android:fillColor="#2E7D32"
         android:pathData="M250,380a25,40 0 1 0 0.01,0z" />
+    
+    <!-- Tree 3 -->
     <path
-        android:fillColor="#388E3C"
+        android:fillColor="#43A047"
+        android:pathData="M350,375a40,60 0 1 0 0.01,0z" />
+    <path
+        android:fillColor="#2E7D32"
         android:pathData="M350,390a35,55 0 1 0 0.01,0z" />
+    
+    <!-- Tree 4 -->
+    <path
+        android:fillColor="#43A047"
+        android:pathData="M450,370a35,50 0 1 0 0.01,0z" />
     <path
         android:fillColor="#2E7D32"
         android:pathData="M450,380a30,45 0 1 0 0.01,0z" />
+    
+    <!-- Tree 5 -->
     <path
         android:fillColor="#388E3C"
+        android:pathData="M550,385a35,50 0 1 0 0.01,0z" />
+    <path
+        android:fillColor="#2E7D32"
         android:pathData="M550,400a25,40 0 1 0 0.01,0z" />
+    
+    <!-- Tree 6 -->
+    <path
+        android:fillColor="#43A047"
+        android:pathData="M650,375a30,45 0 1 0 0.01,0z" />
     <path
         android:fillColor="#2E7D32"
         android:pathData="M650,390a20,35 0 1 0 0.01,0z" />
     
-    <!-- Tree trunks -->
+    <!-- Tree trunks with better detail -->
     <path
         android:fillColor="#5D4037"
-        android:pathData="M150,450h10v50h-10z" />
+        android:pathData="M145,440h10v60h-10z" />
+    <path
+        android:fillColor="#4E342E"
+        android:pathData="M245,420h10v50h-10z" />
     <path
         android:fillColor="#5D4037"
-        android:pathData="M250,420h8v50h-8z" />
+        android:pathData="M345,435h10v65h-10z" />
+    <path
+        android:fillColor="#4E342E"
+        android:pathData="M445,420h10v50h-10z" />
     <path
         android:fillColor="#5D4037"
-        android:pathData="M350,445h12v55h-12z" />
+        android:pathData="M545,440h10v50h-10z" />
     <path
-        android:fillColor="#5D4037"
-        android:pathData="M450,425h10v50h-10z" />
-    <path
-        android:fillColor="#5D4037"
-        android:pathData="M550,440h8v50h-8z" />
-    <path
-        android:fillColor="#5D4037"
-        android:pathData="M650,425h6v50h-6z" />
+        android:fillColor="#4E342E"
+        android:pathData="M645,425h10v60h-10z" />
     
-    <!-- Clouds -->
+    <!-- Foreground smaller plants -->
+    <path
+        android:fillColor="#66BB6A"
+        android:pathData="M100,480a15,25 0 1 0 0.01,0z" />
+    <path
+        android:fillColor="#81C784"
+        android:pathData="M200,485a10,15 0 1 0 0.01,0z" />
+    <path
+        android:fillColor="#66BB6A"
+        android:pathData="M400,480a12,20 0 1 0 0.01,0z" />
+    <path
+        android:fillColor="#81C784"
+        android:pathData="M600,485a15,18 0 1 0 0.01,0z" />
+    <path
+        android:fillColor="#66BB6A"
+        android:pathData="M700,480a10,15 0 1 0 0.01,0z" />
+    
+    <!-- Reed plants at the shoreline -->
+    <path
+        android:strokeColor="#33691E"
+        android:strokeWidth="2"
+        android:pathData="M80,490v20" />
+    <path
+        android:strokeColor="#33691E"
+        android:strokeWidth="2"
+        android:pathData="M85,490v25" />
+    <path
+        android:strokeColor="#33691E"
+        android:strokeWidth="2"
+        android:pathData="M90,490v22" />
+    
+    <path
+        android:strokeColor="#33691E"
+        android:strokeWidth="2"
+        android:pathData="M320,490v20" />
+    <path
+        android:strokeColor="#33691E"
+        android:strokeWidth="2"
+        android:pathData="M325,490v25" />
+    <path
+        android:strokeColor="#33691E"
+        android:strokeWidth="2"
+        android:pathData="M330,490v22" />
+    
+    <path
+        android:strokeColor="#33691E"
+        android:strokeWidth="2"
+        android:pathData="M680,490v20" />
+    <path
+        android:strokeColor="#33691E"
+        android:strokeWidth="2"
+        android:pathData="M685,490v25" />
+    <path
+        android:strokeColor="#33691E"
+        android:strokeWidth="2"
+        android:pathData="M690,490v22" />
+    
+    <!-- Fluffy Clouds -->
     <path
         android:fillColor="#FFFFFF"
-        android:pathData="M100,80a40,25 0 1 0 0.01,0z" />
+        android:pathData="M100,80a50,30 0 1 0 0.01,0z" />
     <path
         android:fillColor="#FFFFFF"
-        android:pathData="M150,70a30,20 0 1 0 0.01,0z" />
+        android:pathData="M130,70a40,25 0 1 0 0.01,0z" />
     <path
         android:fillColor="#FFFFFF"
-        android:pathData="M180,85a25,15 0 1 0 0.01,0z" />
+        android:pathData="M170,75a30,20 0 1 0 0.01,0z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M210,80a20,15 0 1 0 0.01,0z" />
     
     <path
         android:fillColor="#FFFFFF"
-        android:pathData="M400,100a50,30 0 1 0 0.01,0z" />
+        android:pathData="M450,100a60,35 0 1 0 0.01,0z" />
     <path
         android:fillColor="#FFFFFF"
-        android:pathData="M450,90a40,25 0 1 0 0.01,0z" />
+        android:pathData="M400,90a50,30 0 1 0 0.01,0z" />
     <path
         android:fillColor="#FFFFFF"
-        android:pathData="M500,105a35,20 0 1 0 0.01,0z" />
+        android:pathData="M350,100a40,25 0 1 0 0.01,0z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M500,90a45,28 0 1 0 0.01,0z" />
+    
+    <!-- Birds in the sky -->
+    <path
+        android:strokeColor="#37474F"
+        android:strokeWidth="2"
+        android:pathData="M280,150c5,-5 10,-10 15,-5 5,5 10,0 15,-5" />
+    <path
+        android:strokeColor="#37474F"
+        android:strokeWidth="2"
+        android:pathData="M320,180c5,-5 10,-10 15,-5 5,5 10,0 15,-5" />
+    <path
+        android:strokeColor="#37474F"
+        android:strokeWidth="2"
+        android:pathData="M350,130c5,-5 10,-10 15,-5 5,5 10,0 15,-5" />
 </vector> 
