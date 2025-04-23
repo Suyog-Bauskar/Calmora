@@ -1,58 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F9FFFB"
+    android:background="@drawable/music_player_bg"
     android:padding="24dp">
 
-    <!-- Song Image -->
-    <ImageView
-        android:id="@+id/ivSongImage"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/rounded_bg"
-        android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="parent"
+    <!-- Player Header -->
+    <TextView
+        android:id="@+id/tvNowPlaying"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Now Playing"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:alpha="0.9"
+        android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Song Title -->
+    <!-- Song Image with Card View for elevation and rounded corners -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="280dp"
+        android:layout_height="280dp"
+        android:layout_marginTop="32dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvNowPlaying">
+
+        <ImageView
+            android:id="@+id/ivSongImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/calm_nature"
+            android:contentDescription="Album art" />
+            
+    </androidx.cardview.widget.CardView>
+
+    <!-- Song Title with improved styling -->
     <TextView
         android:id="@+id/musicTitleText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
+        android:ellipsize="end"
         android:gravity="center"
-        android:text="Song Title"
-        android:textColor="#0A8146"
+        android:maxLines="1"
+        android:text="Peaceful Meditation"
+        android:textColor="#FFFFFF"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ivSongImage" />
+        app:layout_constraintTop_toBottomOf="@id/cardView" />
 
-    <!-- Seek Bar -->
-    <SeekBar
-        android:id="@+id/seekBar"
+    <!-- Artist name -->
+    <TextView
+        android:id="@+id/tvArtistName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:progressTint="#0A8146"
+        android:layout_marginTop="4dp"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:text="Nature Sounds"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:alpha="0.8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/musicTitleText" />
 
-    <!-- Play/Pause and Skip Buttons -->
+    <!-- Current time -->
+    <TextView
+        android:id="@+id/tvCurrentTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="00:00"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvArtistName" />
+
+    <!-- Total duration -->
+    <TextView
+        android:id="@+id/tvTotalDuration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="05:30"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvCurrentTime" />
+
+    <!-- Improved Seek Bar -->
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:progressDrawable="@drawable/custom_seekbar"
+        android:thumb="@drawable/seekbar_thumb"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvCurrentTime" />
+
+    <!-- Play/Pause and Skip Buttons with better styling -->
     <LinearLayout
         android:id="@+id/playerControls"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/controls_bg"
         android:gravity="center"
         android:orientation="horizontal"
+        android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/seekBar">
@@ -60,34 +130,34 @@
         <!-- Previous Button -->
         <ImageButton
             android:id="@+id/btnPrevious"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:background="@drawable/rounded_bg"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="Previous"
             android:src="@drawable/skip_previous4"
-            app:tint="#0A8146" />
+            app:tint="#FFFFFF" />
 
         <!-- Play/Pause Button -->
         <ImageButton
             android:id="@+id/btnPlayPause"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="76dp"
+            android:layout_height="76dp"
             android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
-            android:background="@drawable/rounded_bg"
+            android:background="@drawable/play_button_bg"
             android:contentDescription="Play"
             android:src="@drawable/play_circle"
-            app:tint="#0A8146" />
+            app:tint="#FFFFFF" />
 
         <!-- Next Button -->
         <ImageButton
             android:id="@+id/btnNext"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:background="@drawable/rounded_bg"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="Next"
             android:src="@drawable/skip_next"
-            app:tint="#0A8146" />
+            app:tint="#FFFFFF" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
