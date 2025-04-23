@@ -1,5 +1,14 @@
 package com.suyogbauskar.calmora;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import com.suyogbauskar.calmora.fragments.HomeFragment;
+import com.suyogbauskar.calmora.fragments.LeaderBoardFragment;
+import com.suyogbauskar.calmora.fragments.ProfileFragment;
+import com.suyogbauskar.calmora.utils.PhobiaAnalyzer;
+
 import android.app.Dialog;
 import android.os.Bundle;
 import android.view.Window;
@@ -7,24 +16,15 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.suyogbauskar.calmora.fragments.HomeFragment;
-import com.suyogbauskar.calmora.fragments.LeaderBoardFragment;
-import com.suyogbauskar.calmora.fragments.ProfileFragment;
-import com.suyogbauskar.calmora.utils.PhobiaAnalyzer;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class HomeActivity extends AppCompatActivity {
     private FirebaseFirestore db;
@@ -138,7 +138,6 @@ public class HomeActivity extends AppCompatActivity {
         TextView tvPhysicalSymptoms = dialog.findViewById(R.id.tvPhysicalSymptoms);
         TextView tvRecommendedTherapy = dialog.findViewById(R.id.tvRecommendedTherapy);
         Button btnStartTherapy = dialog.findViewById(R.id.btnStartTherapy);
-        Button btnLater = dialog.findViewById(R.id.btnLater);
         
         tvPhobiaType.setText(analysis.getPhobiaType());
         tvSeverityLevel.setText(analysis.getSeverityLevel());
@@ -150,17 +149,6 @@ public class HomeActivity extends AppCompatActivity {
         btnStartTherapy.setOnClickListener(v -> {
             // Close the dialog
             dialog.dismiss();
-            
-            // Here you would navigate to the Exposure Therapy section
-            // For now, just go to the home fragment
-            Toast.makeText(HomeActivity.this, "Starting Exposure Therapy", Toast.LENGTH_SHORT).show();
-        });
-        
-        // Handle "Maybe Later" button click
-        btnLater.setOnClickListener(v -> {
-            // Simply close the dialog
-            dialog.dismiss();
-            Toast.makeText(HomeActivity.this, "You can start therapy anytime from the home screen", Toast.LENGTH_SHORT).show();
         });
         
         // Show the dialog

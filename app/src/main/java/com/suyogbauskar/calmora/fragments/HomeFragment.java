@@ -5,6 +5,7 @@ import com.suyogbauskar.calmora.BasicCourse;
 import com.suyogbauskar.calmora.MusicCategoryScreen;
 import com.suyogbauskar.calmora.R;
 import com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator;
+import com.suyogbauskar.calmora.utils.PhobiaFragmentManager;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -74,8 +75,8 @@ public class HomeFragment extends Fragment {
         btn_relaxation_start = view.findViewById(R.id.btn_relaxation_start);
 
         startButton.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), BasicCourse.class);
-            startActivity(intent);
+            // Load the phobia-specific course content
+            startPhobiaSpecificCourse();
         });
 
         btn_relaxation_start.setOnClickListener(v -> {
@@ -197,5 +198,17 @@ public class HomeFragment extends Fragment {
         });
 
         dialog.show();
+    }
+
+    /**
+     * Start the BasicCourse activity with phobia-specific fragments
+     */
+    private void startPhobiaSpecificCourse() {
+        // Get the user's phobia type from Firestore
+        PhobiaFragmentManager.getUserPhobiaType(getContext(), phobiaType -> {
+            Intent intent = new Intent(getActivity(), BasicCourse.class);
+            intent.putExtra("phobiaType", phobiaType);
+            startActivity(intent);
+        });
     }
 }

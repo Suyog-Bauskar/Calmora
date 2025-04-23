@@ -12,7 +12,9 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.suyogbauskar.calmora.Adapter.PhobiaSpecificAdapter;
 import com.suyogbauskar.calmora.Adapter.ViewPagerAdapter;
+import com.suyogbauskar.calmora.utils.PhobiaFragmentManager;
 import com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator;
 
 public class BasicCourse extends AppCompatActivity {
@@ -20,6 +22,7 @@ public class BasicCourse extends AppCompatActivity {
     private ViewPager2 viewPager;
     private WormDotsIndicator dotsIndicator;
     private FloatingActionButton panicButton;
+    private String phobiaType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,16 +36,19 @@ public class BasicCourse extends AppCompatActivity {
             return insets;
         });
 
+        // Get the phobia type from intent
+        phobiaType = getIntent().getStringExtra("phobiaType");
+        if (phobiaType == null) {
+            phobiaType = PhobiaFragmentManager.UNKNOWN_PHOBIA;
+        }
+
         viewPager = findViewById(R.id.viewPager);
         dotsIndicator = findViewById(R.id.dotsIndicator);
         panicButton = findViewById(R.id.panicButton);
 
         viewPager.setSaveEnabled(false);
 
-        ViewPagerAdapter adapter = new ViewPagerAdapter(this); // or pass FragmentActivity context
-        viewPager.setAdapter(adapter);
-
-        dotsIndicator.setViewPager2(viewPager);
+        setupViewPager();
         
         // Show a short tooltip when the button is long-pressed
         panicButton.setOnLongClickListener(v -> {
@@ -57,6 +63,38 @@ public class BasicCourse extends AppCompatActivity {
             // Start the calming music
             startCalmingMusic();
         });
+    }
+    
+    /**
+     * Set up the ViewPager2 with the appropriate adapter based on phobia type
+     */
+    private void setupViewPager() {
+        // Get fragment indices based on phobia type
+        int[] fragmentIndices = PhobiaFragmentManager.getFragmentIndicesForPhobia(phobiaType);
+        
+        // Create the adapter with only the relevant fragments
+        PhobiaSpecificAdapter adapter = new PhobiaSpecificAdapter(this, fragmentIndices);
+        viewPager.setAdapter(adapter);
+        
+        // Set up dots indicator
+        dotsIndicator.setViewPager2(viewPager);
+        
+        // Set the activity title based on phobia type
+        setTitle(getPhobiaTitle(phobiaType));
+    }
+    
+    /**
+     * Get a display title based on phobia type
+     */
+    private String getPhobiaTitle(String phobiaType) {
+        switch (phobiaType) {
+            case PhobiaFragmentManager.ACROPHOBIA:
+                return "Acrophobia Treatment";
+            case PhobiaFragmentManager.CLAUSTROPHOBIA:
+                return "Claustrophobia Treatment";
+            default:
+                return "Phobia Treatment";
+        }
     }
     
     /**
