@@ -8,6 +8,11 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import com.suyogbauskar.calmora.fragments.AnxityFragment;
 import com.suyogbauskar.calmora.fragments.DizzinessVertigoFragment;
 import com.suyogbauskar.calmora.fragments.FeelingOfSuffocationFragment;
+import com.suyogbauskar.calmora.fragments.HeightFiveFragment;
+import com.suyogbauskar.calmora.fragments.HeightFourFragment;
+import com.suyogbauskar.calmora.fragments.HeightOneFragment;
+import com.suyogbauskar.calmora.fragments.HeightThreeFragment;
+import com.suyogbauskar.calmora.fragments.HeightTwoFragment;
 import com.suyogbauskar.calmora.fragments.IntenseNeedToEscapeFragment;
 import com.suyogbauskar.calmora.fragments.MentalDistortionFragment;
 import com.suyogbauskar.calmora.fragments.NauseaFragment;
@@ -79,6 +84,16 @@ public class PhobiaSpecificAdapter extends FragmentStateAdapter {
                 return new FeelingOfSuffocationFragment();
             case 7:
                 return new NauseaFragment();
+            case 8:
+                return new HeightOneFragment();
+            case 9:
+                return new HeightTwoFragment();
+            case 10:
+                return new HeightThreeFragment();
+            case 11:
+                return new HeightFourFragment();
+            case 12:
+                return new HeightFiveFragment();
             default:
                 return new DizzinessVertigoFragment();
         }
