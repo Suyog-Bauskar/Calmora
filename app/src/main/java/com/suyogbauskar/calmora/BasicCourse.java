@@ -7,10 +7,13 @@ import com.suyogbauskar.calmora.utils.PhobiaFragmentManager;
 import com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -23,12 +26,19 @@ public class BasicCourse extends AppCompatActivity {
     private WormDotsIndicator dotsIndicator;
     private FloatingActionButton panicButton;
     private String phobiaType;
+    private int currentPosition = 0;
+    private static final String KEY_CURRENT_POSITION = "current_position";
+    private static final int VIDEO_FRAGMENT_INDEX = 18; // The index of HeightVideoFragment
+    private boolean isVideoFragmentActive = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_basic_course);
+
+        // Default to portrait for all other fragments
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -42,13 +52,38 @@ public class BasicCourse extends AppCompatActivity {
             phobiaType = PhobiaFragmentManager.UNKNOWN_PHOBIA;
         }
 
+        // Restore saved position if available
+        if (savedInstanceState != null) {
+            currentPosition = savedInstanceState.getInt(KEY_CURRENT_POSITION, 0);
+        }
+
         viewPager = findViewById(R.id.viewPager);
         dotsIndicator = findViewById(R.id.dotsIndicator);
         panicButton = findViewById(R.id.panicButton);
 
+        // This is key - we don't want the ViewPager to handle its own saving
         viewPager.setSaveEnabled(false);
-
+        
         setupViewPager();
+        
+        // Set page change listener to save current position and manage orientation
+        viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                currentPosition = position;
+                
+                // Check if we're on the video fragment
+                int actualFragmentIndex = PhobiaFragmentManager.getFragmentIndicesForPhobia(phobiaType)[position];
+                isVideoFragmentActive = (actualFragmentIndex == VIDEO_FRAGMENT_INDEX);
+                
+                // If not on video fragment, ensure portrait mode
+                if (!isVideoFragmentActive) {
+                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                }
+                // Note: Video fragment will set its own orientation
+            }
+        });
         
         // Show a short tooltip when the button is long-pressed
         panicButton.setOnLongClickListener(v -> {
@@ -63,6 +98,36 @@ public class BasicCourse extends AppCompatActivity {
         });
     }
     
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        // Save the current ViewPager position
+        outState.putInt(KEY_CURRENT_POSITION, currentPosition);
+    }
+    
+    @Override
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        // Keep the same position when configuration changes (like orientation)
+        if (viewPager != null) {
+            viewPager.setCurrentItem(currentPosition, false);
+        }
+        
+        // Force portrait for non-video fragments, even during config changes
+        if (!isVideoFragmentActive && newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        }
+    }
+    
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Check if we need to force portrait when resuming
+        if (!isVideoFragmentActive) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        }
+    }
+    
     /**
      * Set up the ViewPager2 with the appropriate adapter based on phobia type
      */
@@ -73,6 +138,14 @@ public class BasicCourse extends AppCompatActivity {
         // Create the adapter with only the relevant fragments
         PhobiaSpecificAdapter adapter = new PhobiaSpecificAdapter(this, fragmentIndices);
         viewPager.setAdapter(adapter);
+        
+        // Set to saved position
+        viewPager.setCurrentItem(currentPosition, false);
+        
+        // Check if we're on video fragment
+        if (currentPosition < fragmentIndices.length) {
+            isVideoFragmentActive = (fragmentIndices[currentPosition] == VIDEO_FRAGMENT_INDEX);
+        }
         
         // Set up dots indicator
         dotsIndicator.setViewPager2(viewPager);

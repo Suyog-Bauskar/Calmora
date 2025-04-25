@@ -23,7 +23,7 @@ public class PhobiaFragmentManager {
     public static final String UNKNOWN_PHOBIA = "Unknown";
 
     // Fragment indices for each phobia type
-    public static final int[] ACROPHOBIA_FRAGMENTS = {0, 1, 2, 3, 8, 9, 10, 11, 12}; // Dizziness, Shortness of Breath, Trembling, Anxiety + 5 new height images
+    public static final int[] ACROPHOBIA_FRAGMENTS = {0, 1, 2, 3, 8, 9, 10, 11, 12, 18}; // Dizziness, Shortness of Breath, Trembling, Anxiety + 5 new height images + video
     public static final int[] CLAUSTROPHOBIA_FRAGMENTS = {4, 5, 6, 7, 13, 14, 15, 16, 17}; // Mental Distortion, Need to Escape, Suffocation, Nausea + 5 new claustrophobia images
 
     /**
