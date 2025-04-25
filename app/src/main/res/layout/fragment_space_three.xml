@@ -3,12 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/black"
     tools:context=".fragments.SpaceThreeFragment">
 
     <ImageView
+        android:id="@+id/space_image_three"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/c_3"
+        android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:contentDescription="Claustrophobia image 3" />
 

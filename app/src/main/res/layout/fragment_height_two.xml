@@ -3,12 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/black"
     tools:context=".fragments.HeightTwoFragment">
 
     <ImageView
+        android:id="@+id/height_image_two"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/h_2"
+        android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:contentDescription="Height image 2" />
 

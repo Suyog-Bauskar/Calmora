@@ -1,17 +1,17 @@
 package com.suyogbauskar.calmora.fragments;
 
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.suyogbauskar.calmora.R;
 
 /**
- * A simple {@link Fragment} subclass for displaying h_5 image.
+ * Fragment for displaying h_5 image with gyroscope-based 3D effect.
  */
-public class HeightFiveFragment extends Fragment {
+public class HeightFiveFragment extends GyroscopeImageFragment {
 
     public HeightFiveFragment() {
         // Required empty public constructor
@@ -22,5 +22,11 @@ public class HeightFiveFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_height_five, container, false);
+    }
+    
+    @Override
+    protected ImageView findImageView(View view) {
+        // Find and return the ImageView from the layout
+        return view.findViewById(R.id.height_image_five);
     }
 } 

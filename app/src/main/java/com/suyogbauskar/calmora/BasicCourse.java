@@ -1,5 +1,11 @@
 package com.suyogbauskar.calmora;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import com.suyogbauskar.calmora.Adapter.PhobiaSpecificAdapter;
+import com.suyogbauskar.calmora.utils.PhobiaFragmentManager;
+import com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -10,12 +16,6 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.viewpager2.widget.ViewPager2;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.suyogbauskar.calmora.Adapter.PhobiaSpecificAdapter;
-import com.suyogbauskar.calmora.Adapter.ViewPagerAdapter;
-import com.suyogbauskar.calmora.utils.PhobiaFragmentManager;
-import com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator;
 
 public class BasicCourse extends AppCompatActivity {
 
@@ -58,8 +58,6 @@ public class BasicCourse extends AppCompatActivity {
         
         // Set up panic button click listener
         panicButton.setOnClickListener(v -> {
-            // Show a brief toast message
-            Toast.makeText(this, "Starting calming music...", Toast.LENGTH_SHORT).show();
             // Start the calming music
             startCalmingMusic();
         });

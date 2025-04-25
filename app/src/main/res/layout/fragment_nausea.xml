@@ -93,15 +93,4 @@
         </LinearLayout>
     </LinearLayout>
 
-    <!-- Floating Action Button -->
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_next"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="50dp"
-        app:srcCompat="@drawable/arrow"
-        android:contentDescription="Next Button"/>
-
 </FrameLayout>
