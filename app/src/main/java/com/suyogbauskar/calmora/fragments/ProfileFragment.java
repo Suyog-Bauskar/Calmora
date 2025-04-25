@@ -281,29 +281,80 @@ public class ProfileFragment extends Fragment {
         RadioButton selectedGenderButton = requireView().findViewById(selectedGenderId);
         String gender = selectedGenderButton.getText().toString().toLowerCase();
         
-        // Save to Firestore
-        User updatedUser = new User(name, gender, ageGroupValue);
+        // Create map of fields to update
+        Map<String, Object> updates = new HashMap<>();
+        updates.put("name", name);
+        updates.put("gender", gender);
+        updates.put("ageGroup", ageGroupValue);
         
         progressDialog.show(requireActivity());
-        db.collection("Users").document(currentUser.getUid()).set(updatedUser)
-            .addOnCompleteListener(task -> {
-                progressDialog.hide();
-                if (task.isSuccessful()) {
-                    // Save notification time to SharedPreferences
-                    SharedPreferences.Editor editor = preferences.edit();
-                    editor.putString(NOTIFICATION_TIME, selectedTimeText.getText().toString());
-                    
-                    // Save therapy days to SharedPreferences
-                    for (int i = 0; i < dayCheckboxes.length; i++) {
-                        editor.putBoolean(DAYS_PREFIX + i, dayCheckboxes[i].isChecked());
-                    }
-                    
-                    editor.apply();
-                    
-                    Toast.makeText(requireContext(), "Profile updated successfully", Toast.LENGTH_SHORT).show();
+        
+        // First check if the document exists
+        db.collection("Users").document(currentUser.getUid()).get()
+            .addOnSuccessListener(documentSnapshot -> {
+                if (documentSnapshot.exists()) {
+                    // Document exists, use update to preserve existing fields
+                    db.collection("Users").document(currentUser.getUid())
+                        .update(updates)
+                        .addOnCompleteListener(task -> handleProfileUpdateResult(task));
                 } else {
-                    Toast.makeText(requireContext(), "Failed to update profile", Toast.LENGTH_SHORT).show();
+                    // Document doesn't exist, create it with set and add default values for leaderboard
+                    addLeaderboardFields(updates);
+                    db.collection("Users").document(currentUser.getUid())
+                        .set(updates)
+                        .addOnCompleteListener(task -> handleProfileUpdateResult(task));
                 }
+            })
+            .addOnFailureListener(e -> {
+                // Error checking document, try to update anyway
+                progressDialog.hide();
+                Toast.makeText(requireContext(), "Error checking profile: " + e.getMessage(), Toast.LENGTH_SHORT).show();
             });
+    }
+    
+    /**
+     * Adds default leaderboard fields to a new user document
+     */
+    private void addLeaderboardFields(Map<String, Object> userData) {
+        // Add current week identifier
+        Calendar calendar = Calendar.getInstance();
+        int weekNumber = calendar.get(Calendar.WEEK_OF_YEAR);
+        int year = calendar.get(Calendar.YEAR);
+        String weekKey = "week_" + year + "_" + weekNumber;
+        userData.put("currentWeekId", weekKey);
+        
+        // Initialize daily usage fields
+        for (int i = 1; i <= 7; i++) {
+            userData.put("day_" + i, 0);
+        }
+        
+        // Initialize total fields
+        userData.put("currentWeekUsage", 0);
+        userData.put("totalAppUsage", 0);
+    }
+    
+    /**
+     * Handles the result of profile update operation
+     */
+    private void handleProfileUpdateResult(com.google.android.gms.tasks.Task<?> task) {
+        progressDialog.hide();
+        if (task.isSuccessful()) {
+            // Save notification time to SharedPreferences
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString(NOTIFICATION_TIME, selectedTimeText.getText().toString());
+            
+            // Save therapy days to SharedPreferences
+            for (int i = 0; i < dayCheckboxes.length; i++) {
+                editor.putBoolean(DAYS_PREFIX + i, dayCheckboxes[i].isChecked());
+            }
+            
+            editor.apply();
+            
+            Toast.makeText(requireContext(), "Profile updated successfully", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(requireContext(), "Failed to update profile: " + 
+                          (task.getException() != null ? task.getException().getMessage() : "Unknown error"), 
+                          Toast.LENGTH_SHORT).show();
+        }
     }
 }
