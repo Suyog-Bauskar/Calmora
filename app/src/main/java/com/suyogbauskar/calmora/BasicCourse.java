@@ -28,7 +28,8 @@ public class BasicCourse extends AppCompatActivity {
     private String phobiaType;
     private int currentPosition = 0;
     private static final String KEY_CURRENT_POSITION = "current_position";
-    private static final int VIDEO_FRAGMENT_INDEX = 18; // The index of HeightVideoFragment
+    private static final int HEIGHT_VIDEO_FRAGMENT_INDEX = 18; // The index of HeightVideoFragment
+    private static final int SPACE_VIDEO_FRAGMENT_INDEX = 19; // The index of SpaceVideoFragment
     private boolean isVideoFragmentActive = false;
 
     @Override
@@ -73,15 +74,16 @@ public class BasicCourse extends AppCompatActivity {
                 super.onPageSelected(position);
                 currentPosition = position;
                 
-                // Check if we're on the video fragment
+                // Check if we're on a video fragment
                 int actualFragmentIndex = PhobiaFragmentManager.getFragmentIndicesForPhobia(phobiaType)[position];
-                isVideoFragmentActive = (actualFragmentIndex == VIDEO_FRAGMENT_INDEX);
+                isVideoFragmentActive = (actualFragmentIndex == HEIGHT_VIDEO_FRAGMENT_INDEX || 
+                                        actualFragmentIndex == SPACE_VIDEO_FRAGMENT_INDEX);
                 
                 // If not on video fragment, ensure portrait mode
                 if (!isVideoFragmentActive) {
                     setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                 }
-                // Note: Video fragment will set its own orientation
+                // Note: Video fragments will set their own orientation
             }
         });
         
@@ -144,7 +146,9 @@ public class BasicCourse extends AppCompatActivity {
         
         // Check if we're on video fragment
         if (currentPosition < fragmentIndices.length) {
-            isVideoFragmentActive = (fragmentIndices[currentPosition] == VIDEO_FRAGMENT_INDEX);
+            int actualFragmentIndex = fragmentIndices[currentPosition];
+            isVideoFragmentActive = (actualFragmentIndex == HEIGHT_VIDEO_FRAGMENT_INDEX || 
+                                    actualFragmentIndex == SPACE_VIDEO_FRAGMENT_INDEX);
         }
         
         // Set up dots indicator

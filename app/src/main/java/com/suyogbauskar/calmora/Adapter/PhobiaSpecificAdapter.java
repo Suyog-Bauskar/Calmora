@@ -23,6 +23,7 @@ import com.suyogbauskar.calmora.fragments.SpaceFourFragment;
 import com.suyogbauskar.calmora.fragments.SpaceOneFragment;
 import com.suyogbauskar.calmora.fragments.SpaceThreeFragment;
 import com.suyogbauskar.calmora.fragments.SpaceTwoFragment;
+import com.suyogbauskar.calmora.fragments.SpaceVideoFragment;
 import com.suyogbauskar.calmora.fragments.TremblingorShakingFragment;
 
 /**
@@ -112,6 +113,8 @@ public class PhobiaSpecificAdapter extends FragmentStateAdapter {
                 return new SpaceFiveFragment();
             case 18:
                 return new HeightVideoFragment();
+            case 19:
+                return new SpaceVideoFragment();
             default:
                 return new DizzinessVertigoFragment();
         }
