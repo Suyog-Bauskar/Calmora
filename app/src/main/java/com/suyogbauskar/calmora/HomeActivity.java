@@ -7,6 +7,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.suyogbauskar.calmora.fragments.HomeFragment;
 import com.suyogbauskar.calmora.fragments.LeaderBoardFragment;
 import com.suyogbauskar.calmora.fragments.ProfileFragment;
+import com.suyogbauskar.calmora.utils.AppUsageTracker;
 import com.suyogbauskar.calmora.utils.PhobiaAnalyzer;
 import com.suyogbauskar.calmora.utils.ProgressDialog;
 
@@ -185,5 +186,19 @@ public class HomeActivity extends AppCompatActivity {
         
         // Show the dialog
         dialog.show();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        // Update usage time when app goes to background
+        AppUsageTracker.getInstance().updateUsageTime();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        // Update usage time when app is stopped
+        AppUsageTracker.getInstance().updateUsageTime();
     }
 }
