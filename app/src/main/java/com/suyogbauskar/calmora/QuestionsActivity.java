@@ -4,12 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.graphics.Insets;
@@ -98,7 +100,7 @@ public class QuestionsActivity extends AppCompatActivity {
 
     private void handleNextButtonClick() {
         if (validateAllQuestionsAnswered()) {
-            saveResponsesToFirestore();
+            showConsentDialog();
         } else {
             Toast.makeText(this, "Please answer all questions", Toast.LENGTH_SHORT).show();
         }
@@ -117,6 +119,36 @@ public class QuestionsActivity extends AppCompatActivity {
             }
         }
         return true;
+    }
+    
+    private void showConsentDialog() {
+        // Create custom dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View dialogView = getLayoutInflater().inflate(R.layout.dialog_consent, null);
+        builder.setView(dialogView);
+        
+        // Get references to buttons
+        Button btnYes = dialogView.findViewById(R.id.btn_yes);
+        Button btnNo = dialogView.findViewById(R.id.btn_no);
+        
+        // Create dialog
+        AlertDialog dialog = builder.create();
+        dialog.setCancelable(false);
+        
+        // Set click listeners
+        btnYes.setOnClickListener(v -> {
+            dialog.dismiss();
+            saveResponsesToFirestore();
+        });
+        
+        btnNo.setOnClickListener(v -> {
+            dialog.dismiss();
+        });
+        
+        // Remove default background to allow rounded corners from our layout
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        
+        dialog.show();
     }
     
     private void saveResponsesToFirestore() {
