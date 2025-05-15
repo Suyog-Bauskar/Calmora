@@ -1,9 +1,1 @@
-- Save question data to firestore and show analysis dialog
-- Show only fragments which are related to selected phobia
-- Show progress dialog when making database calls
-- Add signout button
-- Add 5 more fragments to show images related to acrophobia
-- Add 5 more fragments to show images related to claustrophobia
-- Add gyroscope movements to images
-- Add video
-- Implement leaderboard functionality
+- Add consent dialog
