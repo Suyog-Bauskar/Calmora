@@ -71,8 +71,8 @@ public class OpenAIHelper {
     }
 
     private String buildSystemPrompt(String context) {
-        return "You are a helpful assistant for CalmOra, a mental wellness mobile app. " +
-                "CalmOra helps users with meditation, therapy sessions, phobia analysis, and mental health tracking. " +
+        return "You are a helpful assistant for Calmora, a mental wellness mobile app. " +
+                "Calmora helps users with meditation, therapy sessions, phobia analysis, and mental health tracking. " +
                 "The app features include:\n" +
                 "- Meditation sessions and guided breathing exercises\n" +
                 "- Therapy sessions for various phobias and anxiety\n" +

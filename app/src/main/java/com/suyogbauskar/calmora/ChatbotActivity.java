@@ -77,7 +77,7 @@ public class ChatbotActivity extends AppCompatActivity {
 
     private void addWelcomeMessage() {
         ChatMessage welcomeMessage = new ChatMessage(
-            "Hello! I'm your CalmOra assistant. I can help you with:\n\n" +
+            "Hello! I'm your Calmora assistant. I can help you with:\n\n" +
             "• Understanding app features\n" +
             "• Guidance on using meditation and therapy tools\n" +
             "• Information about your progress\n" +
@@ -163,12 +163,18 @@ public class ChatbotActivity extends AppCompatActivity {
                 .get()
                 .addOnSuccessListener(userDoc -> {
                     StringBuilder context = new StringBuilder();
-                    context.append("User is using CalmOra, a mental wellness app with features like meditation, therapy sessions, and phobia analysis. ");
+                    context.append("User is using Calmora, a mental wellness app with features like meditation, therapy sessions, and phobia analysis. ");
                     
                     if (userDoc.exists()) {
                         // Add user-specific context
                         if (userDoc.contains("name")) {
                             context.append("User's name: ").append(userDoc.getString("name")).append(". ");
+                        }
+                        if (userDoc.contains("age")) {
+                            context.append("User's age: ").append(userDoc.getString("age")).append(". ");
+                        }
+                        if (userDoc.contains("location")) {
+                            context.append("User's location: ").append(userDoc.getString("location")).append(". ");
                         }
                         
                         // Check for questionnaire responses
@@ -193,7 +199,7 @@ public class ChatbotActivity extends AppCompatActivity {
                 })
                 .addOnFailureListener(e -> {
                     // Fallback to general context
-                    String generalContext = "User is using CalmOra, a mental wellness app with meditation and therapy features.";
+                    String generalContext = "User is using Calmora, a mental wellness app with meditation and therapy features.";
                     openAIHelper.getChatResponse(userMessage, generalContext, this::handleBotResponse);
                 });
     }

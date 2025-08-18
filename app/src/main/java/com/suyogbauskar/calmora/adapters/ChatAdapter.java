@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.suyogbauskar.calmora.R;
 import com.suyogbauskar.calmora.models.ChatMessage;
+import com.suyogbauskar.calmora.utils.MarkdownFormatter;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -88,7 +89,8 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
 
         void bind(ChatMessage message) {
-            textMessage.setText(message.getMessage());
+            // Apply markdown formatting for bot messages
+            textMessage.setText(MarkdownFormatter.formatMarkdown(message.getMessage()));
             textTime.setText(timeFormat.format(new Date(message.getTimestamp())));
         }
     }

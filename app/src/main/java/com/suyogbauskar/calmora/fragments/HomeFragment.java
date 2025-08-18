@@ -2,6 +2,7 @@ package com.suyogbauskar.calmora.fragments;
 
 import com.suyogbauskar.calmora.Adapter.ViewPagerAdapter;
 import com.suyogbauskar.calmora.BasicCourse;
+import com.suyogbauskar.calmora.ChatbotActivity;
 import com.suyogbauskar.calmora.MusicCategoryScreen;
 import com.suyogbauskar.calmora.R;
 import com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator;
@@ -26,6 +27,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -43,6 +46,7 @@ public class HomeFragment extends Fragment {
     private Button startButton, btn_relaxation_start;
     private RelativeLayout dailyThoughtButton;
     private ImageView signOutButton;
+    private FloatingActionButton fabChatbot;
     private FirebaseAuth auth;
     private ProgressDialog progressDialog;
     private List<ThoughtItem> dailyThoughts;
@@ -86,6 +90,7 @@ public class HomeFragment extends Fragment {
         startButton = view.findViewById(R.id.btn_basics_start);
         btn_relaxation_start = view.findViewById(R.id.btn_relaxation_start);
         signOutButton = view.findViewById(R.id.iv_signout);
+        fabChatbot = view.findViewById(R.id.fabChatbot);
 
         // Show sign out button only if user is logged in
         if (auth.getCurrentUser() != null) {
@@ -110,6 +115,12 @@ public class HomeFragment extends Fragment {
         // Daily thought dialog button
         dailyThoughtButton = view.findViewById(R.id.btn_daily_thought);
         dailyThoughtButton.setOnClickListener(v -> showDailyThoughtDialog());
+
+        // Chatbot FAB click listener
+        fabChatbot.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), ChatbotActivity.class);
+            startActivity(intent);
+        });
 
         return view;
     }

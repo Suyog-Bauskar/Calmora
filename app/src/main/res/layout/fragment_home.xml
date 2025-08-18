@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bgcolor"
-    android:padding="8dp"
-    android:scrollbars="none"
     tools:context=".fragments.HomeFragment">
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp"
+    android:scrollbars="none">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -390,3 +394,17 @@
 
     </LinearLayout>
 </ScrollView>
+
+<!-- Floating Action Button for Chatbot -->
+<com.google.android.material.floatingactionbutton.FloatingActionButton
+    android:id="@+id/fabChatbot"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom|end"
+    android:layout_margin="16dp"
+    android:backgroundTint="#2D9057"
+    android:src="@drawable/ic_chat"
+    android:tint="@color/white"
+    app:fabSize="normal" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
