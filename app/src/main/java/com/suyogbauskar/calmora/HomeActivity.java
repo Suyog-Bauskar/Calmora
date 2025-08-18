@@ -1,6 +1,7 @@
 package com.suyogbauskar.calmora;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -12,6 +13,7 @@ import com.suyogbauskar.calmora.utils.PhobiaAnalyzer;
 import com.suyogbauskar.calmora.utils.ProgressDialog;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Window;
@@ -58,6 +60,7 @@ public class HomeActivity extends AppCompatActivity {
         progressDialog = new ProgressDialog();
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavView);
+        FloatingActionButton fabChatbot = findViewById(R.id.fabChatbot);
 
         Fragment homeFragment = new HomeFragment();
         Fragment profileFragment = new ProfileFragment();
@@ -77,6 +80,12 @@ public class HomeActivity extends AppCompatActivity {
                 setCurrentFragment(leaderBoardFragment);
             }
             return true;
+        });
+
+        // Chatbot FAB click listener
+        fabChatbot.setOnClickListener(v -> {
+            Intent intent = new Intent(HomeActivity.this, ChatbotActivity.class);
+            startActivity(intent);
         });
 
         // Check if we should show the phobia analysis dialog

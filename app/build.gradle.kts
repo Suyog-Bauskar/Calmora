@@ -86,5 +86,7 @@ dependencies {
 
     implementation(libs.mpandroidchart)
 
+    // HTTP client for OpenAI API
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
 
 }
