@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.VideoView;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,6 +26,8 @@ public class SpaceVideoFragment extends Fragment {
     private int currentPosition = 0;
     private boolean isLandscapeSet = false;
     private boolean isVisible = false;
+    private boolean isExternallyControlled = false;
+    private static final String TAG = "SpaceVideoFragment";
 
     public SpaceVideoFragment() {
         // Required empty public constructor
@@ -82,8 +85,8 @@ public class SpaceVideoFragment extends Fragment {
                 videoView.seekTo(currentPosition);
             }
             
-            // Start playing automatically if visible
-            if (isVisible) {
+            // Start playing automatically if visible and not externally controlled
+            if (isVisible && !isExternallyControlled) {
                 videoView.start();
             }
         });
@@ -105,8 +108,8 @@ public class SpaceVideoFragment extends Fragment {
                 isLandscapeSet = true;
             }
             
-            // Start video if prepared
-            if (videoView != null && !videoView.isPlaying()) {
+            // Start video if prepared and not externally controlled
+            if (videoView != null && !videoView.isPlaying() && !isExternallyControlled) {
                 videoView.start();
             }
         } else {
@@ -135,8 +138,8 @@ public class SpaceVideoFragment extends Fragment {
             isLandscapeSet = true;
         }
         
-        // Resume playback when fragment becomes visible again
-        if (videoView != null) {
+        // Resume playback when fragment becomes visible again (if not externally controlled)
+        if (videoView != null && !isExternallyControlled) {
             if (currentPosition > 0) {
                 videoView.seekTo(currentPosition);
             }
@@ -175,4 +178,76 @@ public class SpaceVideoFragment extends Fragment {
             isLandscapeSet = false;
         }
     }
-} 
+    
+    /**
+     * External control methods for VideoControlHandler
+     */
+    public void setExternallyControlled(boolean controlled) {
+        this.isExternallyControlled = controlled;
+        Log.d(TAG, "External control set to: " + controlled);
+    }
+    
+    public void playVideo() {
+        if (videoView != null) {
+            try {
+                if (!videoView.isPlaying()) {
+                    videoView.start();
+                    Log.d(TAG, "Video started via external control");
+                }
+            } catch (Exception e) {
+                Log.e(TAG, "Error starting video via external control", e);
+            }
+        }
+    }
+    
+    public void pauseVideo() {
+        if (videoView != null) {
+            try {
+                if (videoView.isPlaying()) {
+                    videoView.pause();
+                    Log.d(TAG, "Video paused via external control");
+                }
+            } catch (Exception e) {
+                Log.e(TAG, "Error pausing video via external control", e);
+            }
+        }
+    }
+    
+    public void resetVideo() {
+        if (videoView != null) {
+            try {
+                boolean wasPlaying = videoView.isPlaying();
+                videoView.seekTo(0);
+                currentPosition = 0;
+                if (wasPlaying) {
+                    videoView.start();
+                }
+                Log.d(TAG, "Video reset via external control");
+            } catch (Exception e) {
+                Log.e(TAG, "Error resetting video via external control", e);
+            }
+        }
+    }
+    
+    public void stopVideo() {
+        if (videoView != null) {
+            try {
+                if (videoView.isPlaying()) {
+                    currentPosition = videoView.getCurrentPosition();
+                    videoView.stopPlayback();
+                }
+                Log.d(TAG, "Video stopped via external control");
+            } catch (Exception e) {
+                Log.e(TAG, "Error stopping video via external control", e);
+            }
+        }
+    }
+    
+    public VideoView getVideoView() {
+        return videoView;
+    }
+    
+    public boolean isVideoPlaying() {
+        return videoView != null && videoView.isPlaying();
+    }
+}

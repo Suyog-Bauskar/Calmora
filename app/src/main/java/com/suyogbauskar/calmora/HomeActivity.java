@@ -3,6 +3,8 @@ package com.suyogbauskar.calmora;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.ListenerRegistration;
+import com.google.firebase.firestore.DocumentSnapshot;
 
 import com.suyogbauskar.calmora.fragments.HomeFragment;
 import com.suyogbauskar.calmora.fragments.LeaderBoardFragment;
@@ -19,6 +21,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.util.Log;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,6 +41,11 @@ public class HomeActivity extends AppCompatActivity {
     // SharedPreferences key for tracking if dialog has been shown
     private static final String PREFS_NAME = "CalmOraPrefs";
     private static final String KEY_DIALOG_SHOWN = "phobia_dialog_shown";
+    
+    // Firebase listener for video control
+    private ListenerRegistration videoControlListener;
+    private VideoControlHandler videoControlHandler;
+    private static final String TAG = "HomeActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,8 +88,16 @@ public class HomeActivity extends AppCompatActivity {
             return true;
         });
 
+        // Initialize video control handler
+        videoControlHandler = new VideoControlHandler(this);
+        
         // Check if we should show the phobia analysis dialog
         checkAndShowPhobiaDialog();
+        
+        // Setup video control listeners if user is logged in
+        if (auth.getCurrentUser() != null) {
+            setupVideoControlListeners();
+        }
     }
 
     private void setCurrentFragment(Fragment fragment) {
@@ -201,5 +217,126 @@ public class HomeActivity extends AppCompatActivity {
         super.onStop();
         // Update usage time when app is stopped
         AppUsageTracker.getInstance().updateUsageTime();
+        
+        // Detach video control listeners when activity stops
+        detachVideoControlListeners();
+    }
+    
+    @Override
+    protected void onResume() {
+        super.onResume();
+        
+        // Re-attach video control listeners when activity resumes
+        if (auth.getCurrentUser() != null) {
+            setupVideoControlListeners();
+        }
+    }
+    
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        
+        // Clean up listeners
+        detachVideoControlListeners();
+    }
+    
+    /**
+     * Setup Firebase real-time listeners for video control fields
+     */
+    private void setupVideoControlListeners() {
+        if (auth.getCurrentUser() == null) {
+            Log.w(TAG, "Cannot setup video control listeners: user not logged in");
+            return;
+        }
+        
+        String userId = auth.getCurrentUser().getUid();
+        Log.d(TAG, "Setting up video control listeners for user: " + userId);
+        
+        // Detach any existing listeners first
+        detachVideoControlListeners();
+        
+        // Attach listener to user document
+        videoControlListener = db.collection("Users")
+                .document(userId)
+                .addSnapshotListener((documentSnapshot, error) -> {
+                    if (error != null) {
+                        Log.e(TAG, "Error listening to video control changes", error);
+                        return;
+                    }
+                    
+                    if (documentSnapshot != null && documentSnapshot.exists()) {
+                        handleVideoControlChanges(documentSnapshot);
+                    }
+                });
+    }
+    
+    /**
+     * Detach Firebase listeners to prevent memory leaks
+     */
+    private void detachVideoControlListeners() {
+        if (videoControlListener != null) {
+            Log.d(TAG, "Detaching video control listeners");
+            videoControlListener.remove();
+            videoControlListener = null;
+        }
+    }
+    
+    /**
+     * Handle changes in video control fields from Firestore
+     */
+    private void handleVideoControlChanges(DocumentSnapshot document) {
+        try {
+            // Get video control fields
+            Boolean isPlaying = document.getBoolean("isPlaying");
+            String videoName = document.getString("videoName");
+            Boolean closeVideo = document.getBoolean("closeVideo");
+            Boolean isVideoReset = document.getBoolean("isVideoReset");
+            
+            Log.d(TAG, String.format("Video control changes - isPlaying: %s, videoName: %s, closeVideo: %s, isVideoReset: %s", 
+                    isPlaying, videoName, closeVideo, isVideoReset));
+            
+            // Handle closeVideo first (highest priority)
+            if (closeVideo != null && closeVideo) {
+                videoControlHandler.closeVideo();
+                resetFirestoreField("closeVideo");
+                return;
+            }
+            
+            // Handle video reset
+            if (isVideoReset != null && isVideoReset) {
+                videoControlHandler.resetVideo();
+                resetFirestoreField("isVideoReset");
+                return;
+            }
+            
+            // Handle play/pause with video name
+            if (isPlaying != null && videoName != null && !videoName.isEmpty()) {
+                if (isPlaying) {
+                    videoControlHandler.playVideo(videoName);
+                } else {
+                    videoControlHandler.pauseVideo();
+                }
+            }
+            
+        } catch (Exception e) {
+            Log.e(TAG, "Error handling video control changes", e);
+        }
+    }
+    
+    /**
+     * Reset a Firestore field back to false after processing
+     */
+    private void resetFirestoreField(String fieldName) {
+        if (auth.getCurrentUser() == null) return;
+        
+        String userId = auth.getCurrentUser().getUid();
+        Map<String, Object> update = new HashMap<>();
+        update.put(fieldName, false);
+        
+        db.collection("Users")
+                .document(userId)
+                .update(update)
+                .addOnSuccessListener(aVoid -> Log.d(TAG, "Reset field: " + fieldName))
+                .addOnFailureListener(e -> Log.e(TAG, "Failed to reset field: " + fieldName, e));
     }
 }
