@@ -5,10 +5,12 @@ import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.VideoView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import com.suyogbauskar.calmora.fragments.HeightVideoFragment;
 import com.suyogbauskar.calmora.fragments.SpaceVideoFragment;
@@ -208,6 +210,9 @@ public class VideoControlHandler {
             // Clear current video name
             currentVideoName = null;
             
+            // Restore normal UI mode
+            disableFullScreenMode();
+            
             Log.d(TAG, "Video closed successfully");
             
         } catch (Exception e) {
@@ -232,6 +237,9 @@ public class VideoControlHandler {
             } else if (fragment instanceof SpaceVideoFragment) {
                 ((SpaceVideoFragment) fragment).setExternallyControlled(true);
             }
+            
+            // Hide bottom navigation and make full screen
+            enableFullScreenMode();
             
             // Add fragment to the activity
             FragmentManager fragmentManager = activity.getSupportFragmentManager();
@@ -415,5 +423,62 @@ public class VideoControlHandler {
             }
         }
         return false;
+    }
+    
+    /**
+     * Enable full screen mode and hide bottom navigation
+     */
+    private void enableFullScreenMode() {
+        try {
+            // Hide bottom navigation
+            BottomNavigationView bottomNav = activity.findViewById(R.id.bottomNavView);
+            if (bottomNav != null) {
+                bottomNav.setVisibility(View.GONE);
+                Log.d(TAG, "Bottom navigation hidden");
+            }
+            
+            // Enable full screen mode
+            activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+            
+            // Hide system UI for immersive experience
+            View decorView = activity.getWindow().getDecorView();
+            int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+            decorView.setSystemUiVisibility(uiOptions);
+            
+            Log.d(TAG, "Full screen mode enabled");
+            
+        } catch (Exception e) {
+            Log.e(TAG, "Error enabling full screen mode", e);
+        }
+    }
+    
+    /**
+     * Disable full screen mode and show bottom navigation
+     */
+    private void disableFullScreenMode() {
+        try {
+            // Show bottom navigation
+            BottomNavigationView bottomNav = activity.findViewById(R.id.bottomNavView);
+            if (bottomNav != null) {
+                bottomNav.setVisibility(View.VISIBLE);
+                Log.d(TAG, "Bottom navigation shown");
+            }
+            
+            // Disable full screen mode
+            activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+            
+            // Show system UI
+            View decorView = activity.getWindow().getDecorView();
+            decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
+            
+            Log.d(TAG, "Full screen mode disabled");
+            
+        } catch (Exception e) {
+            Log.e(TAG, "Error disabling full screen mode", e);
+        }
     }
 }
