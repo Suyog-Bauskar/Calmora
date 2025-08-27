@@ -52,7 +52,7 @@ public class SpaceVideoFragment extends Fragment {
         videoView = view.findViewById(R.id.space_video_player);
         
         // Set the video source from raw resources
-        String videoPath = "android.resource://" + requireActivity().getPackageName() + "/" + R.raw.fear_of_closed_space;
+        String videoPath = "android.resource://" + requireActivity().getPackageName() + "/" + R.raw.claustrophobia;
         videoView.setVideoURI(Uri.parse(videoPath));
         
         // Set up looping by listening for completion

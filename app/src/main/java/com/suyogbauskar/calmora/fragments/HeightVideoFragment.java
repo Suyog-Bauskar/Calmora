@@ -52,7 +52,7 @@ public class HeightVideoFragment extends Fragment {
         videoView = view.findViewById(R.id.height_video_player);
         
         // Set the video source from raw resources
-        String videoPath = "android.resource://" + requireActivity().getPackageName() + "/" + R.raw.fear_of_height;
+        String videoPath = "android.resource://" + requireActivity().getPackageName() + "/" + R.raw.acrophobia;
         videoView.setVideoURI(Uri.parse(videoPath));
         
         // Set up looping by listening for completion
