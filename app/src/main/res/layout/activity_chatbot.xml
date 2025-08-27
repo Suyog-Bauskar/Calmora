@@ -23,7 +23,7 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:padding="8dp"
             android:src="@drawable/ic_arrow_back"
-            android:tint="@color/white" />
+            app:tint="@color/white" />
 
         <TextView
             android:layout_width="0dp"
@@ -73,7 +73,7 @@
             android:layout_height="48dp"
             android:background="@drawable/send_button_background"
             android:src="@drawable/ic_send"
-            android:tint="@color/white" />
+            app:tint="@color/white" />
 
     </LinearLayout>
 

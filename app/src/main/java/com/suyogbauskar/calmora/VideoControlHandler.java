@@ -28,7 +28,7 @@ public class VideoControlHandler {
     private String currentVideoName;
     
     // Map video names to their corresponding fragments and raw resource IDs
-    private final Map<String, VideoInfo> videoMap;
+    private Map<String, VideoInfo> videoMap;
     
     private static class VideoInfo {
         Class<? extends Fragment> fragmentClass;
@@ -53,12 +53,14 @@ public class VideoControlHandler {
     private void initializeVideoMap() {
         videoMap = new HashMap<>();
         
-        // Map video names to fragments and resources
+        // Map video names to fragments and resources (with and without file extensions)
         videoMap.put("acrophobia", new VideoInfo(HeightVideoFragment.class, R.raw.acrophobia, "height_video_player"));
+        videoMap.put("acrophobia.mp4", new VideoInfo(HeightVideoFragment.class, R.raw.acrophobia, "height_video_player"));
         videoMap.put("height", new VideoInfo(HeightVideoFragment.class, R.raw.acrophobia, "height_video_player"));
         videoMap.put("heights", new VideoInfo(HeightVideoFragment.class, R.raw.acrophobia, "height_video_player"));
         
         videoMap.put("claustrophobia", new VideoInfo(SpaceVideoFragment.class, R.raw.claustrophobia, "space_video_player"));
+        videoMap.put("claustrophobia.mp4", new VideoInfo(SpaceVideoFragment.class, R.raw.claustrophobia, "space_video_player"));
         videoMap.put("space", new VideoInfo(SpaceVideoFragment.class, R.raw.claustrophobia, "space_video_player"));
         videoMap.put("closed_spaces", new VideoInfo(SpaceVideoFragment.class, R.raw.claustrophobia, "space_video_player"));
         
@@ -78,6 +80,14 @@ public class VideoControlHandler {
         Log.d(TAG, "Attempting to play video: " + videoName);
         
         VideoInfo videoInfo = videoMap.get(videoName);
+        
+        // If not found, try removing file extension
+        if (videoInfo == null && videoName.contains(".")) {
+            String nameWithoutExtension = videoName.substring(0, videoName.lastIndexOf('.'));
+            videoInfo = videoMap.get(nameWithoutExtension);
+            Log.d(TAG, "Trying without extension: " + nameWithoutExtension);
+        }
+        
         if (videoInfo == null) {
             Log.w(TAG, "Unknown video name: " + videoName);
             return;
