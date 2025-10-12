@@ -128,4 +128,74 @@ public class DogVideoFragment extends Fragment {
             videoView.pause();
         }
     }
+    
+    /**
+     * External control methods for VideoControlHandler
+     */
+    public void setExternallyControlled(boolean controlled) {
+        this.isExternallyControlled = controlled;
+        Log.d(TAG, "External control set to: " + controlled);
+    }
+    
+    public void playVideo() {
+        if (videoView != null) {
+            try {
+                if (!videoView.isPlaying()) {
+                    videoView.start();
+                    Log.d(TAG, "Video started playing");
+                }
+            } catch (Exception e) {
+                Log.e(TAG, "Error starting video", e);
+            }
+        }
+    }
+    
+    public void pauseVideo() {
+        if (videoView != null) {
+            try {
+                if (videoView.isPlaying()) {
+                    videoView.pause();
+                    Log.d(TAG, "Video paused");
+                }
+            } catch (Exception e) {
+                Log.e(TAG, "Error pausing video", e);
+            }
+        }
+    }
+    
+    public void resetVideo() {
+        if (videoView != null) {
+            try {
+                boolean wasPlaying = videoView.isPlaying();
+                videoView.seekTo(0);
+                if (wasPlaying) {
+                    videoView.start();
+                }
+                Log.d(TAG, "Video reset");
+            } catch (Exception e) {
+                Log.e(TAG, "Error resetting video", e);
+            }
+        }
+    }
+    
+    public void stopVideo() {
+        if (videoView != null) {
+            try {
+                if (videoView.isPlaying()) {
+                    videoView.stopPlayback();
+                    Log.d(TAG, "Video stopped");
+                }
+            } catch (Exception e) {
+                Log.e(TAG, "Error stopping video", e);
+            }
+        }
+    }
+    
+    public VideoView getVideoView() {
+        return videoView;
+    }
+    
+    public boolean isVideoPlaying() {
+        return videoView != null && videoView.isPlaying();
+    }
 }

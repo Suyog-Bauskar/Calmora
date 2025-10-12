@@ -14,6 +14,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import com.suyogbauskar.calmora.fragments.HeightVideoFragment;
 import com.suyogbauskar.calmora.fragments.SpaceVideoFragment;
+import com.suyogbauskar.calmora.fragments.DogVideoFragment;
+import com.suyogbauskar.calmora.fragments.WaterVideoFragment;
+import com.suyogbauskar.calmora.fragments.SpiderVideoFragment;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -65,6 +68,24 @@ public class VideoControlHandler {
         videoMap.put("claustrophobia.mp4", new VideoInfo(SpaceVideoFragment.class, R.raw.claustrophobia, "space_video_player"));
         videoMap.put("space", new VideoInfo(SpaceVideoFragment.class, R.raw.claustrophobia, "space_video_player"));
         videoMap.put("closed_spaces", new VideoInfo(SpaceVideoFragment.class, R.raw.claustrophobia, "space_video_player"));
+        
+        // Cynophobia (Fear of Dogs)
+        videoMap.put("cynophobia", new VideoInfo(DogVideoFragment.class, R.raw.cynophobia, "dog_video_player"));
+        videoMap.put("cynophobia.mp4", new VideoInfo(DogVideoFragment.class, R.raw.cynophobia, "dog_video_player"));
+        videoMap.put("dogs", new VideoInfo(DogVideoFragment.class, R.raw.cynophobia, "dog_video_player"));
+        videoMap.put("dog", new VideoInfo(DogVideoFragment.class, R.raw.cynophobia, "dog_video_player"));
+        
+        // Hydrophobia (Fear of Water)
+        videoMap.put("hydrophobia", new VideoInfo(WaterVideoFragment.class, R.raw.hydrophobia, "water_video_player"));
+        videoMap.put("hydrophobia.mp4", new VideoInfo(WaterVideoFragment.class, R.raw.hydrophobia, "water_video_player"));
+        videoMap.put("water", new VideoInfo(WaterVideoFragment.class, R.raw.hydrophobia, "water_video_player"));
+        videoMap.put("aquaphobia", new VideoInfo(WaterVideoFragment.class, R.raw.hydrophobia, "water_video_player"));
+        
+        // Arachnophobia (Fear of Spiders)
+        videoMap.put("arachnophobia", new VideoInfo(SpiderVideoFragment.class, R.raw.arachnophobia, "spider_video_player"));
+        videoMap.put("arachnophobia.mp4", new VideoInfo(SpiderVideoFragment.class, R.raw.arachnophobia, "spider_video_player"));
+        videoMap.put("spiders", new VideoInfo(SpiderVideoFragment.class, R.raw.arachnophobia, "spider_video_player"));
+        videoMap.put("spider", new VideoInfo(SpiderVideoFragment.class, R.raw.arachnophobia, "spider_video_player"));
         
         Log.d(TAG, "Initialized video map with " + videoMap.size() + " video types");
     }
@@ -123,6 +144,15 @@ public class VideoControlHandler {
         } else if (currentVideoFragment instanceof SpaceVideoFragment) {
             ((SpaceVideoFragment) currentVideoFragment).pauseVideo();
             return;
+        } else if (currentVideoFragment instanceof DogVideoFragment) {
+            ((DogVideoFragment) currentVideoFragment).pauseVideo();
+            return;
+        } else if (currentVideoFragment instanceof WaterVideoFragment) {
+            ((WaterVideoFragment) currentVideoFragment).pauseVideo();
+            return;
+        } else if (currentVideoFragment instanceof SpiderVideoFragment) {
+            ((SpiderVideoFragment) currentVideoFragment).pauseVideo();
+            return;
         }
         
         // Fallback to direct VideoView control
@@ -153,6 +183,15 @@ public class VideoControlHandler {
             return;
         } else if (currentVideoFragment instanceof SpaceVideoFragment) {
             ((SpaceVideoFragment) currentVideoFragment).resetVideo();
+            return;
+        } else if (currentVideoFragment instanceof DogVideoFragment) {
+            ((DogVideoFragment) currentVideoFragment).resetVideo();
+            return;
+        } else if (currentVideoFragment instanceof WaterVideoFragment) {
+            ((WaterVideoFragment) currentVideoFragment).resetVideo();
+            return;
+        } else if (currentVideoFragment instanceof SpiderVideoFragment) {
+            ((SpiderVideoFragment) currentVideoFragment).resetVideo();
             return;
         }
         
@@ -187,6 +226,12 @@ public class VideoControlHandler {
                 ((HeightVideoFragment) currentVideoFragment).stopVideo();
             } else if (currentVideoFragment instanceof SpaceVideoFragment) {
                 ((SpaceVideoFragment) currentVideoFragment).stopVideo();
+            } else if (currentVideoFragment instanceof DogVideoFragment) {
+                ((DogVideoFragment) currentVideoFragment).stopVideo();
+            } else if (currentVideoFragment instanceof WaterVideoFragment) {
+                ((WaterVideoFragment) currentVideoFragment).stopVideo();
+            } else if (currentVideoFragment instanceof SpiderVideoFragment) {
+                ((SpiderVideoFragment) currentVideoFragment).stopVideo();
             }
             
             // Stop and clear video view
@@ -236,6 +281,12 @@ public class VideoControlHandler {
                 ((HeightVideoFragment) fragment).setExternallyControlled(true);
             } else if (fragment instanceof SpaceVideoFragment) {
                 ((SpaceVideoFragment) fragment).setExternallyControlled(true);
+            } else if (fragment instanceof DogVideoFragment) {
+                ((DogVideoFragment) fragment).setExternallyControlled(true);
+            } else if (fragment instanceof WaterVideoFragment) {
+                ((WaterVideoFragment) fragment).setExternallyControlled(true);
+            } else if (fragment instanceof SpiderVideoFragment) {
+                ((SpiderVideoFragment) fragment).setExternallyControlled(true);
             }
             
             // Hide bottom navigation and make full screen
@@ -313,6 +364,15 @@ public class VideoControlHandler {
         } else if (currentVideoFragment instanceof SpaceVideoFragment) {
             ((SpaceVideoFragment) currentVideoFragment).playVideo();
             return;
+        } else if (currentVideoFragment instanceof DogVideoFragment) {
+            ((DogVideoFragment) currentVideoFragment).playVideo();
+            return;
+        } else if (currentVideoFragment instanceof WaterVideoFragment) {
+            ((WaterVideoFragment) currentVideoFragment).playVideo();
+            return;
+        } else if (currentVideoFragment instanceof SpiderVideoFragment) {
+            ((SpiderVideoFragment) currentVideoFragment).playVideo();
+            return;
         }
         
         // Fallback to direct VideoView control
@@ -337,6 +397,12 @@ public class VideoControlHandler {
             ((HeightVideoFragment) currentVideoFragment).playVideo();
         } else if (currentVideoFragment instanceof SpaceVideoFragment) {
             ((SpaceVideoFragment) currentVideoFragment).playVideo();
+        } else if (currentVideoFragment instanceof DogVideoFragment) {
+            ((DogVideoFragment) currentVideoFragment).playVideo();
+        } else if (currentVideoFragment instanceof WaterVideoFragment) {
+            ((WaterVideoFragment) currentVideoFragment).playVideo();
+        } else if (currentVideoFragment instanceof SpiderVideoFragment) {
+            ((SpiderVideoFragment) currentVideoFragment).playVideo();
         }
     }
     
@@ -346,7 +412,7 @@ public class VideoControlHandler {
     private void pauseVideoInFragment() {
         try {
             // Try common VideoView IDs
-            String[] videoViewIds = {"height_video_player", "space_video_player", "video_player"};
+            String[] videoViewIds = {"height_video_player", "space_video_player", "dog_video_player", "water_video_player", "spider_video_player", "video_player"};
             
             for (String viewId : videoViewIds) {
                 int id = activity.getResources().getIdentifier(viewId, "id", activity.getPackageName());
@@ -373,7 +439,7 @@ public class VideoControlHandler {
     private void resetVideoInFragment() {
         try {
             // Try common VideoView IDs
-            String[] videoViewIds = {"height_video_player", "space_video_player", "video_player"};
+            String[] videoViewIds = {"height_video_player", "space_video_player", "dog_video_player", "water_video_player", "spider_video_player", "video_player"};
             
             for (String viewId : videoViewIds) {
                 int id = activity.getResources().getIdentifier(viewId, "id", activity.getPackageName());
@@ -412,6 +478,12 @@ public class VideoControlHandler {
             return ((HeightVideoFragment) currentVideoFragment).isVideoPlaying();
         } else if (currentVideoFragment instanceof SpaceVideoFragment) {
             return ((SpaceVideoFragment) currentVideoFragment).isVideoPlaying();
+        } else if (currentVideoFragment instanceof DogVideoFragment) {
+            return ((DogVideoFragment) currentVideoFragment).isVideoPlaying();
+        } else if (currentVideoFragment instanceof WaterVideoFragment) {
+            return ((WaterVideoFragment) currentVideoFragment).isVideoPlaying();
+        } else if (currentVideoFragment instanceof SpiderVideoFragment) {
+            return ((SpiderVideoFragment) currentVideoFragment).isVideoPlaying();
         }
         
         // Fallback to direct VideoView control
