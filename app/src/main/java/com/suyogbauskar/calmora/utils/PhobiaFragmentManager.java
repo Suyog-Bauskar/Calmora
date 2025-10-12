@@ -20,11 +20,17 @@ public class PhobiaFragmentManager {
     // Phobia types
     public static final String ACROPHOBIA = "Acrophobia";
     public static final String CLAUSTROPHOBIA = "Claustrophobia";
+    public static final String CYNOPHOBIA = "Cynophobia";
+    public static final String HYDROPHOBIA = "Hydrophobia";
+    public static final String ARACHNOPHOBIA = "Arachnophobia";
     public static final String UNKNOWN_PHOBIA = "Unknown";
 
     // Fragment indices for each phobia type
-    public static final int[] ACROPHOBIA_FRAGMENTS = {0, 1, 2, 3, 8, 9, 10, 11, 12, 18}; // Dizziness, Shortness of Breath, Trembling, Anxiety + 5 new height images + video
-    public static final int[] CLAUSTROPHOBIA_FRAGMENTS = {4, 5, 6, 7, 13, 14, 15, 16, 17, 19}; // Mental Distortion, Need to Escape, Suffocation, Nausea + 5 new claustrophobia images + video
+    public static final int[] ACROPHOBIA_FRAGMENTS = {0, 1, 2, 3, 8, 9, 10, 11, 12, 18}; // Dizziness, Shortness of Breath, Trembling, Anxiety + 5 height images + video
+    public static final int[] CLAUSTROPHOBIA_FRAGMENTS = {4, 5, 6, 7, 13, 14, 15, 16, 17, 19}; // Mental Distortion, Need to Escape, Suffocation, Nausea + 5 space images + video
+    public static final int[] CYNOPHOBIA_FRAGMENTS = {20, 21, 22, 23, 24, 25, 26, 27, 28, 29}; // Excessive Fear, Avoidance, Physical Symptoms, Irrational Thoughts + 5 dog images + video
+    public static final int[] HYDROPHOBIA_FRAGMENTS = {30, 31, 32, 33, 34, 35, 36, 37, 38, 39}; // Water Panic, Water Avoidance, Breathing Difficulty, Drowning Anxiety + 5 water images + video
+    public static final int[] ARACHNOPHOBIA_FRAGMENTS = {40, 41, 42, 43, 44, 45, 46, 47, 48, 49}; // Spider Panic, Spider Avoidance, Physical Symptoms, Contamination Fear + 5 spider images + video
 
     /**
      * Get the array of fragment indices for a specific phobia type
@@ -36,6 +42,12 @@ public class PhobiaFragmentManager {
             return ACROPHOBIA_FRAGMENTS;
         } else if (phobiaType.contains("Claustrophobia")) {
             return CLAUSTROPHOBIA_FRAGMENTS;
+        } else if (phobiaType.contains("Cynophobia")) {
+            return CYNOPHOBIA_FRAGMENTS;
+        } else if (phobiaType.contains("Hydrophobia")) {
+            return HYDROPHOBIA_FRAGMENTS;
+        } else if (phobiaType.contains("Arachnophobia")) {
+            return ARACHNOPHOBIA_FRAGMENTS;
         } else {
             // Default to all fragments if phobia type is unknown
             return new int[]{0, 1, 2, 3, 4, 5, 6, 7};
@@ -118,6 +130,12 @@ public class PhobiaFragmentManager {
             return ACROPHOBIA;
         } else if (phobiaResponse.contains("Enclosed spaces")) {
             return CLAUSTROPHOBIA;
+        } else if (phobiaResponse.contains("Dogs")) {
+            return CYNOPHOBIA;
+        } else if (phobiaResponse.contains("Water")) {
+            return HYDROPHOBIA;
+        } else if (phobiaResponse.contains("Spiders")) {
+            return ARACHNOPHOBIA;
         } else {
             return UNKNOWN_PHOBIA;
         }

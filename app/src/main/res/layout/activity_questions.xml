@@ -73,6 +73,33 @@
                     android:fontFamily="sans-serif"
                     android:text="Enclosed spaces (Claustrophobia)"
                     android:textColor="@color/black" />
+
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/rounded_corners"
+                    android:fontFamily="sans-serif"
+                    android:text="Dogs (Cynophobia)"
+                    android:textColor="@color/black" />
+
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/rounded_corners"
+                    android:fontFamily="sans-serif"
+                    android:text="Water (Hydrophobia)"
+                    android:textColor="@color/black" />
+
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/rounded_corners"
+                    android:fontFamily="sans-serif"
+                    android:text="Spiders (Arachnophobia)"
+                    android:textColor="@color/black" />
             </RadioGroup>
 
             <View

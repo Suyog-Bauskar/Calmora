@@ -76,6 +76,12 @@ public class PhobiaAnalyzer {
             return "Acrophobia (Fear of Heights)";
         } else if (response.contains("Enclosed spaces")) {
             return "Claustrophobia (Fear of Enclosed Spaces)";
+        } else if (response.contains("Dogs")) {
+            return "Cynophobia (Fear of Dogs)";
+        } else if (response.contains("Water")) {
+            return "Hydrophobia (Fear of Water)";
+        } else if (response.contains("Spiders")) {
+            return "Arachnophobia (Fear of Spiders)";
         } else {
             return "Specific Phobia";
         }
@@ -207,6 +213,15 @@ public class PhobiaAnalyzer {
         } else if (phobiaType.contains("Claustrophobia")) {
             recommendation.append("Exposure Therapy for enclosed spaces. ");
             recommendation.append("This approach helps you gradually confront your fear of confined spaces in a controlled manner, helping to reduce anxiety responses.");
+        } else if (phobiaType.contains("Cynophobia")) {
+            recommendation.append("Systematic Desensitization Therapy for dogs. ");
+            recommendation.append("This treatment involves gradual exposure to dogs starting with images, then videos, and eventually real dogs in a controlled environment to reduce fear responses.");
+        } else if (phobiaType.contains("Hydrophobia")) {
+            recommendation.append("Aquatic Exposure Therapy for water fears. ");
+            recommendation.append("This specialized therapy gradually introduces you to water environments, starting with shallow water and progressing to deeper water as comfort increases.");
+        } else if (phobiaType.contains("Arachnophobia")) {
+            recommendation.append("Graduated Exposure Therapy for spiders. ");
+            recommendation.append("This treatment involves systematic desensitization starting with spider images, progressing to videos, toy spiders, and eventually live spiders in a controlled therapeutic setting.");
         } else {
             recommendation.append("Cognitive-Behavioral Therapy (CBT) combined with Exposure Therapy. ");
             recommendation.append("This combination helps you challenge negative thought patterns while gradually facing your fears in a controlled environment.");
