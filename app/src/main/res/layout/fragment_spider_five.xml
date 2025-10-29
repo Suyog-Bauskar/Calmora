@@ -10,7 +10,7 @@
         android:id="@+id/spider_image_five"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/faceimogi"
+        android:src="@drawable/a_5"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:contentDescription="Spider image 5" />

@@ -10,7 +10,7 @@
         android:id="@+id/water_image_two"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/h_2"
+        android:src="@drawable/w_2"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:contentDescription="Water image 2" />
