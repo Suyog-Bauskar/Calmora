@@ -38,3 +38,4 @@ The app now includes a leaderboard feature that displays:
 - A manual trigger function is available at `/manualTriggerWeeklyReset` for testing weekly reset
 
 check linear
+test reviewers
